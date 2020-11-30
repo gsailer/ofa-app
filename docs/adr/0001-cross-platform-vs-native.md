@@ -1,4 +1,4 @@
-# [Cross-plaform vs Old/New Native approach for development]
+# Cross-plaform vs Old/New Native approach for development
 
 * Status: postponed
 * Deciders: Dominik Prediger, Gabriel Sailer
