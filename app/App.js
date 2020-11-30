@@ -12,17 +12,40 @@ import {
   StyleSheet,
   ScrollView,
   View,
+  Button,
   Text,
   StatusBar,
 } from 'react-native';
 
 import {
   Header,
-  LearnMoreLinks,
   Colors,
-  DebugInstructions,
-  ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
+import DocumentPicker from 'react-native-document-picker';
+
+const loadJSON = async () => {
+    try {
+        const res = await DocumentPicker.pick({type: [DocumentPicker.types.allFiles],});
+        console.log(
+            res.uri,
+            res.type, // mime type
+            res.name,
+            res.size
+        );
+        if (res.type !== "application/json") {
+            alert("Did you pick the correct file?\nPlease supply a JSON file.");
+            console.log("ABORT: Didn't get json");
+        }
+
+    } catch (err) {
+        if (DocumentPicker.isCancel(err)) {
+        // User cancelled the picker, exit any dialogs or menus and move on
+    } else {
+        throw err;
+    }
+    }
+}
 
 const App: () => React$Node = () => {
   return (
@@ -40,31 +63,16 @@ const App: () => React$Node = () => {
           )}
           <View style={styles.body}>
             <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
+              <Text style={styles.sectionTitle}>Select off-facebook-activity json</Text>
               <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
+                Please select your <Text style={styles.highlight}>off_facebook-activity.json</Text> you downloaded from Facebook.
               </Text>
+              <Button
+                onPress={loadJSON}
+                title="Load data"
+                accessibilityLabel="Load your Facebook data from your device"
+              />
             </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
           </View>
         </ScrollView>
       </SafeAreaView>
