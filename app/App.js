@@ -23,17 +23,27 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import DocumentPicker from 'react-native-document-picker';
+import * as RNFS from 'react-native-fs';
+
+
+
+const writeToTable = (text) => {
+    let sites = JSON.parse(text)['off_facebook_activity'].map(site => site.name);
+    console.log(sites);
+};
 
 const loadJSON = async () => {
     try {
         const res = await DocumentPicker.pick({type: [DocumentPicker.types.allFiles],});
-        console.log(
-            res.uri,
-            res.type, // mime type
-            res.name,
-            res.size
-        );
-        if (res.type !== "application/json") {
+        if (res.type === "application/json") {
+            RNFS.readFile(res.uri, "utf8")
+                .then((content) => {
+                    writeToTable(content);
+                })
+                .catch((err) => {
+                    console.log(err.message, err.code);
+                });
+        } else {
             alert("Did you pick the correct file?\nPlease supply a JSON file.");
             console.log("ABORT: Didn't get json");
         }
@@ -55,7 +65,6 @@ const App: () => React$Node = () => {
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
-          <Header />
           {global.HermesInternal == null ? null : (
             <View style={styles.engine}>
               <Text style={styles.footer}>Engine: Hermes</Text>
