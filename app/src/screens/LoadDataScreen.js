@@ -1,24 +1,20 @@
 import React from 'react';
 
-import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  Button,
-  Text,
-  StatusBar,
-} from 'react-native';
+import {View, Button, Text} from 'react-native';
 
 import {styles} from '../styles';
 import DocumentPicker from 'react-native-document-picker';
 import * as RNFS from 'react-native-fs';
 
-const writeToTable = (text) => {
-  let sites = JSON.parse(text).off_facebook_activity.map((site) => site.name);
-  console.log(sites);
+const transformToTable = (text, navigation) => {
+  let sites = JSON.parse(text).off_facebook_activity;
+  let numOfEvents = sites.map((site) => {
+    return {name: site.name, numOfEvents: site.events.length};
+  });
+  navigation.navigate('Data Overview', {numberOfEvents: numOfEvents});
 };
 
-const loadJSON = async () => {
+const loadJSON = async (navigation) => {
   try {
     const res = await DocumentPicker.pick({
       type: [DocumentPicker.types.allFiles],
@@ -26,7 +22,7 @@ const loadJSON = async () => {
     if (res.type === 'application/json') {
       RNFS.readFile(res.uri, 'utf8')
         .then((content) => {
-          writeToTable(content);
+          transformToTable(content, navigation);
         })
         .catch((err) => {
           console.log(err.message, err.code);
@@ -45,39 +41,25 @@ const loadJSON = async () => {
   }
 };
 
-const LoadDataScreen = () => {
+const LoadDataScreen = ({navigation}) => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>
-                Select off-facebook-activity json
-              </Text>
-              <Text style={styles.sectionDescription}>
-                Please select your{' '}
-                <Text style={styles.highlight}>off_facebook-activity.json</Text>{' '}
-                you downloaded from Facebook.
-              </Text>
-              <Button
-                onPress={loadJSON}
-                title="Load data"
-                accessibilityLabel="Load your Facebook data from your device"
-              />
-            </View>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
+    <View style={styles.body}>
+      <View style={styles.sectionContainer}>
+        <Text style={styles.sectionTitle}>
+          Select off-facebook-activity json
+        </Text>
+        <Text style={styles.sectionDescription}>
+          Please select your{' '}
+          <Text style={styles.highlight}>off_facebook-activity.json</Text> you
+          downloaded from Facebook.
+        </Text>
+        <Button
+          onPress={() => loadJSON(navigation)}
+          title="Load data"
+          accessibilityLabel="Load your Facebook data from your device"
+        />
+      </View>
+    </View>
   );
 };
 
