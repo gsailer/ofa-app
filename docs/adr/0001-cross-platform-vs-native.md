@@ -1,8 +1,8 @@
 # Cross-plaform vs Old/New Native approach for development
 
-* Status: postponed
+* Status: accepted
 * Deciders: Dominik Prediger, Gabriel Sailer
-* Date: 2020-11-30
+* Date: 2020-12-06
 
 Technical Story: Technical implementation of the app
 
@@ -26,14 +26,12 @@ What language should be used?
 * Java
 * Kotlin
 * React Native JS
-* React Native Typescript
 * Flutter
 
 ## Decision Outcome
 
-Posponed until result of prototype performance between Flutter and RN is clear.
 
-Chosen option: "[option 1]", because [justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force force | … | comes out best (see below)].
+Chosen option: Flutter, because quick prototyping showed better ease of use with external libs over React Native, apart from that head-to-head. Coming up to personal preference.
 
 
 ## Pros and Cons of the Options
@@ -67,25 +65,24 @@ Cross-platform based on popular framework
 
 * Good, because hot reloading support
 * Good, because availability of many npm libs
-* Good, because of one-time effort for Android and iOS
 * Good, because JS knowlege exists at the institute and with students
-* Good, because types allow for more explict code when using TypeScript
 * Good, because of greater professional user base than Flutter
 * Bad, because code might break with release of RN >1.0.0
 * Bad, because of lower performance
-
+* Bad, because of npm native package complexity (learned during prototype)
 
 ### [Flutter]
 
 Cross-platform UI-toolkit by Google
 
+* Good, because of better cross-platform ui components
 * Good, because hot reloading support
 * Good, because up and coming technology by Google
 * Good, because of one-time effort for Android and iOS
 * Bad, because fewer libs than in the js ecosystem
 * Bad, because of relative immaturity
-* Bad, because of low user rate according to Stackoverflow
 
 ## Links
 
 [Stackoverflow Survey 2020](https://insights.stackoverflow.com/survey/2020)
+[Migration Story Reflectly](https://medium.com/reflectly-engineering/reflectly-from-react-native-to-flutter-2e3dffced2ea)
