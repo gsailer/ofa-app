@@ -29,8 +29,6 @@ What language should be used?
 * Flutter
 
 ## Decision Outcome
-
-
 Chosen option: Flutter, because quick prototyping showed better ease of use with external libs over React Native, apart from that head-to-head. Coming up to personal preference.
 
 
