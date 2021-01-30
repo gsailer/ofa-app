@@ -11,8 +11,10 @@ class _OnboardingState extends State<Onboarding> {
   int _numPages = 4;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
-  List<double> _heights = new List.unmodifiable([350.0, 350.0, 790.0, 670.0]);
-  double _pageViewHeight = 350.0;
+  // List<double> _heights = new List.unmodifiable([350.0, 350.0, 810.0, 670.0]);
+  List<double> _heights = new List.unmodifiable([0.4, 0.4, 0.95, 0.8]);
+  
+  double _pageViewHeight = 0.4;
   List<String> _buttonText = new List.unmodifiable(
       ["Yes!", "Let's find out!", "Done, next!", "Upload .json file"]);
 
@@ -80,7 +82,7 @@ class _OnboardingState extends State<Onboarding> {
               ),
               child: Container(
                 //TODO: auto adjust height depending on pageview size so on "download your data"-page the buttons move down"
-                height: _pageViewHeight,
+                height: MediaQuery.of(context).size.height*_pageViewHeight,
                 // width: MediaQuery.of(context).size.width * 1,
 
                 // child: SizedBox(
@@ -247,7 +249,7 @@ class _OnboardingState extends State<Onboarding> {
                                           width: 200,
                                           child: ElevatedButton(
                                             onPressed: () => {
-                                              Navigator.pushReplacementNamed(
+                                              Navigator.pushNamed(
                                                   context, '/loadingJSON'),
                                             },
                                             style: ElevatedButton.styleFrom(
