@@ -45,16 +45,12 @@ class _LoadingScreenState extends State<LoadingJSON> {
             arguments: jsonEvents);
       } else {
         //TODO: Give user info his json file was
-        print('error1');
-        // Navigator.pushReplacementNamed(context, '/noJSON');
-        Navigator.of(context).pop(_alertDialog());
+        Navigator.of(context).pop();
+        _alertDialog();
         
       }
     } catch (e) {
-        //TODO: Give user info his json file was
-      print(e);
-      print('error2');
-      // Navigator.pushReplacementNamed(context, '/noJSON');
+      //TODO: Give user info his json file was
       Navigator.of(context).pop();
       _alertDialog();
       
