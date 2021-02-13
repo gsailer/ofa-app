@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:ofa_v0/json_parser.dart';
+import 'package:archive/archive.dart' as Arc;
 
 class LoadingJSON extends StatefulWidget {
   @override
@@ -10,49 +11,54 @@ class LoadingJSON extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingJSON> {
-
-  void _alertDialog() {
+  void _alertDialog(String err) {
     showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text("Error"),
-          //TODO: give more comprehensive error
-          content: Text("Are you sure you have selected the OFA.zip file?"),
-          actions: [
-            FlatButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              }, 
-              child: Text("Try again"),
-            ),
-          ],
-        );
-      }
-    );
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Error"),
+            content: Text(err),
+            actions: [
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("Try again"),
+              ),
+            ],
+          );
+        });
   }
   
   void readJSON() async {
-  
     try {
-      FilePickerResult result = await FilePicker.platform.pickFiles();
+      FilePickerResult result = await FilePicker.platform.pickFiles(
+          type: FileType.custom,
+          allowedExtensions: ['zip'],
+          allowMultiple: false);
 
       if (result != null) {
-        File file = File(result.files.single.path);
-        String contents = await file.readAsString();
+        File zip = File(result.files.first.path);
+        final Arc.Archive archive =
+            new Arc.ZipDecoder().decodeBytes(await zip.readAsBytes());
+
+        var json = await archive
+            .findFile("your_off-facebook_activity.json")
+            .content as List<int>;
+        String contents = utf8.decode(json);
+
         final jsonEvents = OFAjson.fromJson(jsonDecode(contents));
         Navigator.pushReplacementNamed(context, '/dashBoard',
             arguments: jsonEvents);
       } else {
-        //TODO: Give user info his json file was
         Navigator.of(context).pop();
-        _alertDialog();
-        
+        _alertDialog(
+            "Something went wrong. Are you sure you chose the right archive?");
       }
     } catch (e) {
-      //TODO: Give user info his json file was
+      // TODO: do actual exception handling and don't pipe through exceptions
       Navigator.of(context).pop();
-      _alertDialog();
+      _alertDialog(e.toString());
     }
   }
 
