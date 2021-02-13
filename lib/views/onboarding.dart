@@ -14,10 +14,14 @@ class _OnboardingState extends State<Onboarding> {
 
   // List<double> _heights = new List.unmodifiable([350.0, 350.0, 810.0, 670.0]);
   List<double> _heights = new List.unmodifiable([0.4, 0.4, 0.95, 0.8]);
-  
+
   double _pageViewHeight = 0.4;
-  List<String> _buttonText = new List.unmodifiable(
-      ["Yes!", "Let's find out!", "Done, next!", "Upload .json file"]);
+  List<String> _buttonText = new List.unmodifiable([
+    "Yes!",
+    "Let's find out!",
+    "Done, next!",
+    "Upload your Facebook data archive"
+  ]);
 
   List<Widget> _indicatorWidget() {
     List<Widget> list = [];
@@ -46,8 +50,7 @@ class _OnboardingState extends State<Onboarding> {
     return ElevatedButton(
       onPressed: () {
         _pageController.nextPage(
-            duration: Duration(milliseconds: 100), 
-            curve: Curves.easeIn);
+            duration: Duration(milliseconds: 100), curve: Curves.easeIn);
       },
       style: ElevatedButton.styleFrom(
         primary: Color(0xFFE93A68),
@@ -83,7 +86,7 @@ class _OnboardingState extends State<Onboarding> {
               ),
               child: Container(
                 //TODO: auto adjust height depending on pageview size so on "download your data"-page the buttons move down"
-                height: MediaQuery.of(context).size.height*_pageViewHeight,
+                height: MediaQuery.of(context).size.height * _pageViewHeight,
                 // width: MediaQuery.of(context).size.width * 1,
 
                 // child: SizedBox(
@@ -219,52 +222,51 @@ class _OnboardingState extends State<Onboarding> {
                             ),
                           ),
                           Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                height: 600,
-                                width: 300,
-                                decoration: BoxDecoration(
-                                    color: Color(0x1EE93A68),
-                                    border: Border.all(
-                                      color: Color(0xFFE93A68),
-                                      width: 2,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12)),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Opacity(
-                                        opacity: 0.4,
-                                        child: Image(
-                                          image: AssetImage(
-                                            'assets/images/upload_icon.png'
-                                          )),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                          top: 15.0,
-                                          bottom: 60,
-                                        ),
-                                        child: Container(
-                                          width: 200,
-                                          child: ElevatedButton(
-                                            onPressed: () => {
-                                              Navigator.pushNamed(
-                                                  context, '/loadingJSON'),
-                                            },
-                                            style: ElevatedButton.styleFrom(
-                                              primary: Color(0xFFE93A68),
-                                              elevation: 12,
-                                            ),
-                                            child: Text(_buttonText[3]),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: 600,
+                              width: 300,
+                              decoration: BoxDecoration(
+                                  color: Color(0x1EE93A68),
+                                  border: Border.all(
+                                    color: Color(0xFFE93A68),
+                                    width: 2,
                                   ),
-                                ),
-                              )
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Opacity(
+                                    opacity: 0.4,
+                                    child: Image(
+                                        image: AssetImage(
+                                            'assets/images/upload_icon.png')),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      top: 15.0,
+                                      bottom: 60,
+                                    ),
+                                    child: Container(
+                                      width: 200,
+                                      child: ElevatedButton(
+                                        onPressed: () => {
+                                          Navigator.pushNamed(
+                                              context, '/loadingJSON'),
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          primary: Color(0xFFE93A68),
+                                          elevation: 12,
+                                        ),
+                                        child: Text(_buttonText[3]),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
                         ],
                       )
                     ]),
