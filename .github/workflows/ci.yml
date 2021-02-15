@@ -18,9 +18,9 @@ jobs:
       - run: flutter build ios --debug --no-codesign
       - uses: actions/upload-artifact@v1
         with:
-          name: release-apk
+          name: release-ofa.apk
           path: build/app/outputs/apk/release/app-release.apk
       - uses: actions/upload-artifact@v1
         with:
-          name: debug-ios
+          name: debug-ofa.app
           path: build/ios/iphoneos/Runner.app
