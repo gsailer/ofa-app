@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ofa_v0/json_parser.dart';
 // import 'package:ofa_v0/views/more_websites.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class DashBoard extends StatefulWidget {
   @override
@@ -11,7 +12,8 @@ class _DashBoard extends State<DashBoard> {
   OFAjson data;
     OFAjson sortedData;
     ListView subtitleCollapsed;
-    ListView subtitle ;
+    ListView subtitle;
+    GridView cardSubtitle;
     int firstInit = 1;
   @override
   void initState() {
@@ -63,7 +65,7 @@ class _DashBoard extends State<DashBoard> {
 
   Widget _appWebCardWindow(String title) {
     if(firstInit == 1){
-      subtitle = _subtitle(data, sortedData);
+      subtitle = _subtitleAppWebWindow(data, sortedData);
       firstInit --;
     }
     //TODO Let the tile take up the whole screen when expanded (user should still be able to scroll to other tiles) and collapse other tiles
@@ -84,7 +86,7 @@ class _DashBoard extends State<DashBoard> {
                       ),
                     onExpansionChanged: (state){
                       setState(() {
-                        subtitle = state ? null : _subtitle(data, sortedData);  
+                        subtitle = state ? null : _subtitleAppWebWindow(data, sortedData);  
                       });
                     },
                     subtitle: subtitle,
@@ -103,6 +105,7 @@ class _DashBoard extends State<DashBoard> {
                             ),
                                                       child: Container(
                               decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(7),
                                 border: Border.all(
                                   color: Colors.white,
                                   width: 1,
@@ -121,7 +124,6 @@ class _DashBoard extends State<DashBoard> {
                                 ),
                             ),
                           );
-                          
                         },
                       )
                     ],
@@ -132,9 +134,66 @@ class _DashBoard extends State<DashBoard> {
   }
 
   Widget _appsAndWebsitesCard() {
-    return Icon(Icons.ac_unit);
+    var tileWidth = [3, 3, 3, 6, 3, 3, 3, 3, 3, 3, 3, 3];
+    var tileHeight = [2, 3, 1, 1, 2, 1, 1, 1, 1, 2, 2, 3];
+
+    return Theme(
+      data: Theme.of(context).copyWith(unselectedWidgetColor: Colors.white, accentColor: Colors.white),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 8.0),
+        child: ListTileTheme(
+            dense: true, //TODO See if this needs to be here
+            contentPadding: EdgeInsets.symmetric(horizontal: 4),
+            child: ExpansionTile(
+              title: Text(
+                  "What do we understand from your data",
+                  style: TextStyle(
+                    color: Colors.white
+                  ),
+                ),
+              // onExpansionChanged: (state){
+                // setState(() {
+                //   subtitle = state ? null : _subtitle(data, sortedData);  
+                // });
+              // },
+              subtitle: _subtitleInsightCard(tileWidth, tileHeight),
+              children: <Widget>[
+                StaggeredGridView.countBuilder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  crossAxisCount: 6,
+                  itemCount: 8, 
+                  itemBuilder: (BuildContext context, int index) => new Container(
+                    // color: Colors.green,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(7),
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 2,
+                      )
+                    ),
+                    child: new Center(
+                      child: new CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: new Text('$index'),
+                      ),
+                    ),
+                  ), 
+                  staggeredTileBuilder: (int index) =>
+                    StaggeredTile.count(tileWidth[index+4], tileHeight[index+4]),
+                    mainAxisSpacing: 10.0,
+                    crossAxisSpacing: 10.0,
+                  ),
+              ],
+            ),
+          ),
+        ),
+    );
   }
 }
+
+
 
 OFAjson sortData(OFAjson data) {
   data.offFacebookActivity
@@ -142,7 +201,7 @@ OFAjson sortData(OFAjson data) {
   return data;
 }
 
-ListView _subtitle(data, sortedData){
+ListView _subtitleAppWebWindow(data, sortedData){
   return ListView.builder(
     physics: const NeverScrollableScrollPhysics(),
     shrinkWrap: true,
@@ -156,6 +215,7 @@ ListView _subtitle(data, sortedData){
         ),
         child: Container(
           decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(7),
             border: Border.all(
               color: Colors.white,
               width: 1,
@@ -179,4 +239,33 @@ ListView _subtitle(data, sortedData){
       );
     },
   );
+}
+
+StaggeredGridView _subtitleInsightCard(tileWidth, tileHeight){
+  return StaggeredGridView.countBuilder(
+    physics: const NeverScrollableScrollPhysics(),
+    shrinkWrap: true,
+    crossAxisCount: 6,
+    itemCount: 4, 
+    itemBuilder: (BuildContext context, int index) => new Container(
+      // color: Colors.green,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(7),
+        border: Border.all(
+          color: Colors.white,
+          width: 2,
+        )
+      ),
+      child: new Center(
+        child: new CircleAvatar(
+          backgroundColor: Colors.white,
+          child: new Text('$index'),
+        ),
+      ),
+    ), 
+    staggeredTileBuilder: (int index) =>
+      StaggeredTile.count(tileWidth[index], tileHeight[index]),
+      mainAxisSpacing: 10.0,
+      crossAxisSpacing: 10.0,
+    );
 }
