@@ -11,6 +11,7 @@ class _OnboardingState extends State<Onboarding> {
   int _numPages = 4;
   final PageController _pageController = PageController(initialPage: 0);
   int _currentPage = 0;
+
   // List<double> _heights = new List.unmodifiable([350.0, 350.0, 810.0, 670.0]);
   List<double> _heights = new List.unmodifiable([0.4, 0.4, 0.95, 0.8]);
   

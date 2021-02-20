@@ -31,7 +31,7 @@ class _LoadingScreenState extends State<LoadingJSON> {
       }
     );
   }
-
+  
   void readJSON() async {
   
     try {
@@ -53,8 +53,6 @@ class _LoadingScreenState extends State<LoadingJSON> {
       //TODO: Give user info his json file was
       Navigator.of(context).pop();
       _alertDialog();
-      
-
     }
   }
 
