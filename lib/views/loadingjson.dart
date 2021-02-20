@@ -10,6 +10,28 @@ class LoadingJSON extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingJSON> {
+
+  void _alertDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Error"),
+          //TODO: give more comprehensive error
+          content: Text("Are you sure you have selected the OFA.zip file?"),
+          actions: [
+            FlatButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              }, 
+              child: Text("Try again"),
+            ),
+          ],
+        );
+      }
+    );
+  }
+  
   void readJSON() async {
   
     try {
@@ -23,13 +45,14 @@ class _LoadingScreenState extends State<LoadingJSON> {
             arguments: jsonEvents);
       } else {
         //TODO: Give user info his json file was
-        print('error1');
-        Navigator.pushReplacementNamed(context, '/noJSON');
+        Navigator.of(context).pop();
+        _alertDialog();
+        
       }
     } catch (e) {
-        //TODO: Give user info his json file was
-      print(e);
-      Navigator.pushReplacementNamed(context, '/noJSON');
+      //TODO: Give user info his json file was
+      Navigator.of(context).pop();
+      _alertDialog();
     }
   }
 
