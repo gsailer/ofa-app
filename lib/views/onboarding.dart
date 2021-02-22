@@ -108,7 +108,7 @@ class _OnboardingState extends State<Onboarding> {
                           Padding(
                             padding: EdgeInsets.symmetric(vertical: 60),
                             child: Image(
-                              image: AssetImage('assets/images/3_todo.png'),
+                              image: AssetImage('assets/icons/data2x.png'),
                               width: 100,
                               height: 100,
                             ),
@@ -147,7 +147,7 @@ class _OnboardingState extends State<Onboarding> {
                           Padding(
                             padding: EdgeInsets.symmetric(vertical: 60),
                             child: Image(
-                              image: AssetImage('assets/images/3_todo.png'),
+                              image: AssetImage('assets/icons/books2x.png'),
                               width: 100,
                               height: 100,
                             ),
@@ -278,6 +278,11 @@ class _OnboardingState extends State<Onboarding> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [_button(_currentPage)],
               ),
+            Container(
+              child: Image(
+                image: AssetImage('assets/icons/onboarding-footer.png'),
+              ),
+            )
 
             // if (_currentPage == 0)
             //   Row(
