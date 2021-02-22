@@ -1,8 +1,11 @@
+import 'package:df/df.dart';
+
 class DFRepository {
-  //Dataframe
-  final df = new Map();
+  DataFrame df;
 
   DFRepository(jsonEvents) {
+    var rows = new Map();
+    df = DataFrame.fromRows(rows);
     // create dataframe from jsonEvents
   }
 
