@@ -66,7 +66,9 @@ class _OnboardingState extends State<Onboarding> {
         value: SystemUiOverlayStyle.light,
         child: Container(
           decoration: BoxDecoration(
-            color: Color(0xFF212121),
+            image: DecorationImage(
+                image: AssetImage('assets/images/ofa-back-dark.png'),
+                fit: BoxFit.fitHeight),
           ),
           child: ListView(children: <Widget>[
             Padding(
@@ -277,12 +279,7 @@ class _OnboardingState extends State<Onboarding> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [_button(_currentPage)],
-              ),
-            Container(
-              child: Image(
-                image: AssetImage('assets/icons/onboarding-footer.png'),
-              ),
-            )
+              )
 
             // if (_currentPage == 0)
             //   Row(
