@@ -32,10 +32,8 @@ class DFRepository {
 
   addColumn(String name, List entries) {
     List<Map<String, dynamic>> rows = this.df.rows.toList();
-    for (Map<String, dynamic> row in rows) {
-      for (dynamic entry in entries) {
-        row[name] = entry;
-      }
+    for (var i = 0; i < rows.length; i++) {
+      rows[i][name] = entries[i];
     }
     DataFrame newDF = DataFrame.fromRows(rows);
     this.df = newDF;
