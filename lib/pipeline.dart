@@ -32,5 +32,6 @@ class Pipeline {
     for (Insight i in insights) {
       i.calcInsight(dataframeRepo, insightsRepo);
     }
+    insightsRepo.persist();
   }
 }
