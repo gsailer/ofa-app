@@ -1,5 +1,7 @@
+import 'package:ofa_v0/insights/OverviewInsight.dart';
 import 'package:ofa_v0/insights/insight.dart';
 import 'package:ofa_v0/repositories.dart';
+import 'package:ofa_v0/transformations/appExtractor.dart';
 import 'package:ofa_v0/transformations/transformation.dart';
 
 class Pipeline {
@@ -11,9 +13,15 @@ class Pipeline {
   Pipeline(INRepository insightsData, DFRepository dataframe) {
     this.dataframeRepo = dataframe;
     this.insightsRepo = insightsData;
+    // tranformations
+    AppExtractor appExtractor = new AppExtractor();
+
+    // insights
+    OverviewInsight overviewInsight = new OverviewInsight();
+
     // register new transformations and insights here
-    this.transformations = [];
-    this.insights = [];
+    this.transformations = [appExtractor];
+    this.insights = [overviewInsight];
   }
 
   trigger() {

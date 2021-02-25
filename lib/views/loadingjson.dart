@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:df/df.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:ofa_v0/json_parser.dart';
@@ -17,6 +16,12 @@ class DashboardArguments {
   OFAjson data;
   INRepository insights;
   DashboardArguments(this.data, this.insights);
+}
+
+// TODO: Move to a better more sensible spot
+class InsightsArguments {
+  INRepository insights;
+  InsightsArguments(this.insights);
 }
 
 class _LoadingScreenState extends State<LoadingJSON> {
