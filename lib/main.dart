@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+// import 'package:ofa_v0/views/more_websites.dart';
 import 'package:ofa_v0/views/nojson.dart';
 // import 'package:ofa_v0/json_parser.dart'
 import 'package:ofa_v0/views/loadingjson.dart';
 import 'package:ofa_v0/views/dashboard.dart';
 import 'package:ofa_v0/views/onboarding.dart';
+import 'package:ofa_v0/views/how_to_del.dart';
 
 void main() {
   runApp(MyApp());
@@ -26,6 +28,8 @@ class MyApp extends StatelessWidget {
         '/dashBoard': (context) => DashBoard(),
         '/noJSON': (context) => NoJSON(),
         '/loadingJSON': (context) => LoadingJSON(),
+        '/how_to_del': (context) => HowToDel(),
+        // '/more_websites': (context) => MoreWebsites(),
       }
     ); 
   }
