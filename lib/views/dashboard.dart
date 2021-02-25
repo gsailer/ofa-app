@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ofa_v0/json_parser.dart';
 // import 'package:ofa_v0/views/more_websites.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:ofa_v0/views/insights_cards/OverviewInsightCard.dart';
 import 'package:ofa_v0/views/loadingjson.dart';
 
 class DashBoard extends StatefulWidget {
@@ -52,6 +53,7 @@ class _DashBoard extends State<DashBoard> {
               "Web-sites that share your information (${data.offFacebookActivity.length})"),
           _appWebCardWindow(
               "Apps that share your information (${data.offFacebookActivity.length})"),
+          OverviewInsightCard(InsightsArguments(args.insights))
         ],
       ),
     );
