@@ -3,9 +3,11 @@ import 'dart:io';
 
 import 'package:df/df.dart';
 import 'package:logging/logging.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:ofa_v0/json_parser.dart';
 
 final log = Logger('Repositories');
+const String INSIGHTS_STORAGE_NAME = "ofa-insights.json";
 
 class DFRepository {
   DataFrame df;
@@ -61,14 +63,23 @@ class INRepository {
     return store[key];
   }
 
-  persist(path) async {
+  persist() async {
+    final Directory directory = await getApplicationDocumentsDirectory();
+    String path = "${directory.path}/$INSIGHTS_STORAGE_NAME";
     var file = new File(path);
     await file.writeAsString(jsonEncode(store));
   }
 
-  loadFromFS(path) async {
+  Future<bool> loadFromFS() async {
+    final Directory directory = await getApplicationDocumentsDirectory();
+    String path = "$directory.path/$INSIGHTS_STORAGE_NAME";
     var file = new File(path);
-    var json = jsonDecode(await file.readAsString());
-    this.store = json;
+    if (file.existsSync()) {
+      var json = jsonDecode(await file.readAsString());
+      this.store = json;
+      return true;
+    } else {
+      return false;
+    }
   }
 }
