@@ -8,10 +8,12 @@ class Pipeline {
   INRepository insightsRepo;
   DFRepository dataframeRepo;
 
-  Pipeline(List<Transformation> transformations, List<Insight> insights,
-      INRepository insightsData, DFRepository dataframe) {
+  Pipeline(INRepository insightsData, DFRepository dataframe) {
     this.dataframeRepo = dataframe;
     this.insightsRepo = insightsData;
+    // register new transformations and insights here
+    this.transformations = [];
+    this.insights = [];
   }
 
   trigger() {

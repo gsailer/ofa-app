@@ -1,13 +1,22 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:df/df.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:ofa_v0/json_parser.dart';
 import 'package:archive/archive.dart' as Arc;
+import 'package:ofa_v0/pipeline.dart';
+import 'package:ofa_v0/repositories.dart';
 
 class LoadingJSON extends StatefulWidget {
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
+}
+
+class DashboardArguments {
+  OFAjson data;
+  INRepository insights;
+  DashboardArguments(this.data, this.insights);
 }
 
 class _LoadingScreenState extends State<LoadingJSON> {
@@ -29,7 +38,7 @@ class _LoadingScreenState extends State<LoadingJSON> {
           );
         });
   }
-  
+
   void readJSON() async {
     try {
       FilePickerResult result = await FilePicker.platform.pickFiles(
@@ -48,8 +57,13 @@ class _LoadingScreenState extends State<LoadingJSON> {
         String contents = utf8.decode(json);
 
         final jsonEvents = OFAjson.fromJson(jsonDecode(contents));
+        DFRepository dataframe = new DFRepository(jsonEvents);
+        INRepository insightsData = new INRepository();
+        Pipeline pipeline = new Pipeline(insightsData, dataframe);
+        pipeline.trigger();
+
         Navigator.pushReplacementNamed(context, '/dashBoard',
-            arguments: jsonEvents);
+            arguments: DashboardArguments(jsonEvents, pipeline.insightsRepo));
       } else {
         Navigator.of(context).pop();
         _alertDialog(
