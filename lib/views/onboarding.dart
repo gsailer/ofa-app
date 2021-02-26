@@ -26,7 +26,7 @@ class _OnboardingState extends State<Onboarding> {
   List<Widget> _indicatorWidget() {
     List<Widget> list = [];
     for (int i = 0; i < _numPages; i++) {
-      list.add(i == _currentPage ? _indicator(true) : _indicator(false));
+      list.add(i <= _currentPage ? _indicator(true) : _indicator(false));
     }
     return list;
   }
@@ -66,7 +66,9 @@ class _OnboardingState extends State<Onboarding> {
         value: SystemUiOverlayStyle.light,
         child: Container(
           decoration: BoxDecoration(
-            color: Color(0xFF212121),
+            image: DecorationImage(
+                image: AssetImage('assets/images/ofa-back-dark.png'),
+                fit: BoxFit.fitHeight),
           ),
           child: ListView(children: <Widget>[
             Padding(
@@ -108,7 +110,7 @@ class _OnboardingState extends State<Onboarding> {
                           Padding(
                             padding: EdgeInsets.symmetric(vertical: 60),
                             child: Image(
-                              image: AssetImage('assets/images/3_todo.png'),
+                              image: AssetImage('assets/icons/data2x.png'),
                               width: 100,
                               height: 100,
                             ),
@@ -147,7 +149,7 @@ class _OnboardingState extends State<Onboarding> {
                           Padding(
                             padding: EdgeInsets.symmetric(vertical: 60),
                             child: Image(
-                              image: AssetImage('assets/images/3_todo.png'),
+                              image: AssetImage('assets/icons/books2x.png'),
                               width: 100,
                               height: 100,
                             ),
@@ -277,7 +279,7 @@ class _OnboardingState extends State<Onboarding> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [_button(_currentPage)],
-              ),
+              )
 
             // if (_currentPage == 0)
             //   Row(

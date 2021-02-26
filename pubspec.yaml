@@ -52,7 +52,12 @@ flutter:
     - assets/images/3_todo.png
     - assets/images/json_tutorial.gif
     - assets/images/upload_icon.png
-
+    - assets/icons/books.png
+    - assets/icons/data.png
+    - assets/icons/books2x.png
+    - assets/icons/data2x.png
+    - assets/icons/onboarding-footer.png
+    - assets/images/ofa-back-dark.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
