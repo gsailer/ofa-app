@@ -25,23 +25,28 @@ class _DashBoard extends State<DashBoard> {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     DashboardArguments args = ModalRoute.of(context).settings.arguments;
     data = args.data;
+=======
+    data = ModalRoute.of(context).settings.arguments;
+>>>>>>> fc8d9b4 (Add Drawer Menu)
     sortedData = sortData(data);
     return Scaffold(
+      drawer: Drawer(
+        child: _drawer(),
+      ),
       backgroundColor: Color(0xff212121),
       appBar: AppBar(
         backgroundColor: Color(0xff212121),
-        leading: IconButton(
-          icon: Icon(Icons.menu, color: Colors.white),
-          onPressed: () {
-            // Navigator.push(
-            //     context,
-            //     MaterialPageRoute(
-            //       builder: (context) => null,
-            //     ));
-          },
-        ),
+        leading: Builder(builder: (BuildContext context) {
+          return IconButton(
+            icon: Icon(Icons.menu, color: Colors.white),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          );
+        }),
       ),
       body: ListView(
         // physics: const AlwaysScrollableScrollPhysics(),
@@ -53,7 +58,79 @@ class _DashBoard extends State<DashBoard> {
               "Web-sites that share your information (${data.offFacebookActivity.length})"),
           _appWebCardWindow(
               "Apps that share your information (${data.offFacebookActivity.length})"),
+<<<<<<< HEAD
           OverviewInsightCard(InsightsArguments(args.insights))
+=======
+        ],
+      ),
+    );
+  }
+
+  Widget _drawer() {
+    return Drawer(
+      
+      // Add a ListView to the drawer. This ensures the user can scroll
+      // through the options in the drawer if there isn't enough vertical
+      // space to fit everything.
+      child: ListView(
+        // Important: Remove any padding from the ListView.
+        padding: EdgeInsets.all(0),
+        children: <Widget>[
+          Container(
+            height: MediaQuery.of(context).size.height * 0.18,
+            child: DrawerHeader(
+              margin: EdgeInsets.all(0),
+              child: Text('Drawer Header'),
+              decoration: BoxDecoration(
+                color: Color(0xff212121),
+              ),
+            ),
+          ),
+
+          // height: 99999,
+          // decoration: BoxDecoration(
+          //   color: Color(0xff212121),
+          // ),
+
+     
+            ListView(
+              shrinkWrap: true,
+              padding: const EdgeInsets.only(top: 0),
+              children: <Widget>[
+                  ListTile(
+                    tileColor: Color(0xff212121),
+                    title: Text('How to delete data from Facebook?'),
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, '/how_to_del');
+                    },
+                  ),
+                
+                ListTile(
+                  tileColor: Color(0xff212121),
+                  title: Text('Feedback'),
+                  onTap: () {
+                    // Update the state of the app.
+                    // ...
+                  },
+                ),
+                ListTile(
+                  title: Text('Authors'),
+                  onTap: () {
+                    // Update the state of the app.
+                    // ...
+                  },
+                ),
+                ListTile(
+                  title: Text('Licenses'),
+                  onTap: () {
+                    // Update the state of the app.
+                    // ...
+                  },
+                ),
+              ],
+            ),
+          
+>>>>>>> fc8d9b4 (Add Drawer Menu)
         ],
       ),
     );
