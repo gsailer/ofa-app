@@ -20,7 +20,7 @@ class _OnboardingState extends State<Onboarding> {
     "Yes!",
     "Let's find out!",
     "Done, next!",
-    "Upload your Facebook data archive"
+    "Import your Facebook data archive"
   ]);
 
   List<Widget> _indicatorWidget() {
