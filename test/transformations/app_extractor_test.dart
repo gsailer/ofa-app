@@ -1,5 +1,5 @@
 import 'package:ofa_v0/repositories.dart';
-import 'package:ofa_v0/transformations/appExtractor.dart';
+import 'package:ofa_v0/transformations/app_extractor.dart';
 import 'package:test/test.dart';
 
 import '../repository_test.dart';

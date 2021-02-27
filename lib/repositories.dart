@@ -7,7 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:ofa_v0/json_parser.dart';
 
 final log = Logger('Repositories');
-const String INSIGHTS_STORAGE_NAME = "ofa-insights.json";
+const String insightsStorageName = "ofa-insights.json";
 
 /// Dataframe Repository
 ///
@@ -96,7 +96,7 @@ class INRepository {
   /// Writes the store into a json file in AppDocument Storage.
   persist() async {
     final Directory directory = await getApplicationDocumentsDirectory();
-    String path = "${directory.path}/$INSIGHTS_STORAGE_NAME";
+    String path = "${directory.path}/$insightsStorageName";
     var file = new File(path);
     await file.writeAsString(jsonEncode(store));
   }
@@ -105,7 +105,7 @@ class INRepository {
   /// and instanciates a new store.
   Future<bool> loadFromFS() async {
     final Directory directory = await getApplicationDocumentsDirectory();
-    String path = "${directory.path}/$INSIGHTS_STORAGE_NAME";
+    String path = "${directory.path}/$insightsStorageName";
     var file = new File(path);
     if (file.existsSync()) {
       var json = jsonDecode(await file.readAsString());

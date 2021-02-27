@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:ofa_v0/json_parser.dart';
-import 'package:archive/archive.dart' as Arc;
+import 'package:archive/archive.dart' as archive_lib;
 import 'package:ofa_v0/pipeline.dart';
 import 'package:ofa_v0/repositories.dart';
 
@@ -53,8 +53,8 @@ class _LoadingScreenState extends State<LoadingJSON> {
 
       if (result != null) {
         File zip = File(result.files.first.path);
-        final Arc.Archive archive =
-            new Arc.ZipDecoder().decodeBytes(await zip.readAsBytes());
+        final archive_lib.Archive archive =
+            new archive_lib.ZipDecoder().decodeBytes(await zip.readAsBytes());
 
         var json = await archive
             .findFile("ads_and_businesses/your_off-facebook_activity.json")
