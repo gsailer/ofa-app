@@ -57,8 +57,13 @@ class _LoadingScreenState extends State<LoadingJSON> {
             new Arc.ZipDecoder().decodeBytes(await zip.readAsBytes());
 
         var json = await archive
-            .findFile("your_off-facebook_activity.json")
-            .content as List<int>;
+            .findFile("ads_and_businesses/your_off-facebook_activity.json")
+            ?.content as List<int>;
+
+        if (json == null) {
+          throw new Exception(
+              "Could not find activity information in the archive.");
+        }
         String contents = utf8.decode(json);
 
         final jsonEvents = OFAjson.fromJson(jsonDecode(contents));
@@ -77,7 +82,7 @@ class _LoadingScreenState extends State<LoadingJSON> {
     } catch (e) {
       // TODO: do actual exception handling and don't pipe through exceptions
       Navigator.of(context).pop();
-      _alertDialog(e.toString());
+      _alertDialog("${e.toString()}\nDid you supply the correct archive?");
     }
   }
 
