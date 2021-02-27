@@ -9,9 +9,17 @@ import 'package:ofa_v0/json_parser.dart';
 final log = Logger('Repositories');
 const String INSIGHTS_STORAGE_NAME = "ofa-insights.json";
 
+/// Dataframe Repository
+///
+/// A wrapper for the central working dataframe.
+/// Insights are generated on the basis of this
+/// augmented dataset.
 class DFRepository {
   DataFrame df;
 
+  /// Initiates a new Dataframe based on a OFAjson object,
+  /// which results from parsing the raw json available
+  /// in the FB data archive.
   DFRepository(OFAjson jsonEvents) {
     List<Map<String, dynamic>> rows = [];
     for (OffFacebookActivity activity in jsonEvents.offFacebookActivity) {
@@ -32,6 +40,13 @@ class DFRepository {
     return this.df;
   }
 
+  /// Adds a new column to the dataframe
+  ///
+  /// Column names can not be in the following set:
+  ///   site, timestamp, event, event_id
+  /// Also columns can not be overwritten once they are added.
+  ///
+  /// Throws an exception in case the col name is already taken.
   addColumn(String name, List entries) {
     List<Map<String, dynamic>> rows = this.df.rows.toList();
     if (!rows[0].containsKey(name)) {
@@ -47,6 +62,10 @@ class DFRepository {
   }
 }
 
+/// Insights Repository
+///
+/// allows adding generic json-serializable data,
+/// which should be accessible to insights widgets.
 class INRepository {
   Map<String, dynamic> store;
 
@@ -54,6 +73,12 @@ class INRepository {
     store = new Map();
   }
 
+  /// Commit new insight data to the store
+  ///
+  /// The submitted data in the value has to be
+  /// json serializable.
+  /// Throws an exception, if the key already exists
+  /// in the store.
   addInsight(String key, dynamic value) {
     // prevent overriding of existing insights
     if (!store.containsKey(key)) {
@@ -68,6 +93,7 @@ class INRepository {
     return store[key];
   }
 
+  /// Writes the store into a json file in AppDocument Storage.
   persist() async {
     final Directory directory = await getApplicationDocumentsDirectory();
     String path = "${directory.path}/$INSIGHTS_STORAGE_NAME";
@@ -75,6 +101,8 @@ class INRepository {
     await file.writeAsString(jsonEncode(store));
   }
 
+  /// Reads data from a json in AppDocument Storage
+  /// and instanciates a new store.
   Future<bool> loadFromFS() async {
     final Directory directory = await getApplicationDocumentsDirectory();
     String path = "${directory.path}/$INSIGHTS_STORAGE_NAME";
