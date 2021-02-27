@@ -25,12 +25,9 @@ class _DashBoard extends State<DashBoard> {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
+
     DashboardArguments args = ModalRoute.of(context).settings.arguments;
     data = args.data;
-=======
-    data = ModalRoute.of(context).settings.arguments;
->>>>>>> fc8d9b4 (Add Drawer Menu)
     sortedData = sortData(data);
     return Scaffold(
       drawer: Drawer(
@@ -58,9 +55,8 @@ class _DashBoard extends State<DashBoard> {
               "Web-sites that share your information (${data.offFacebookActivity.length})"),
           _appWebCardWindow(
               "Apps that share your information (${data.offFacebookActivity.length})"),
-<<<<<<< HEAD
+
           OverviewInsightCard(InsightsArguments(args.insights))
-=======
         ],
       ),
     );
@@ -129,8 +125,6 @@ class _DashBoard extends State<DashBoard> {
                 ),
               ],
             ),
-          
->>>>>>> fc8d9b4 (Add Drawer Menu)
         ],
       ),
     );
