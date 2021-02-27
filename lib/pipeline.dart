@@ -1,7 +1,7 @@
-import 'package:ofa_v0/insights/OverviewInsight.dart';
+import 'package:ofa_v0/insights/overview_insight.dart';
 import 'package:ofa_v0/insights/insight.dart';
 import 'package:ofa_v0/repositories.dart';
-import 'package:ofa_v0/transformations/appExtractor.dart';
+import 'package:ofa_v0/transformations/app_extractor.dart';
 import 'package:ofa_v0/transformations/transformation.dart';
 
 class Pipeline {
