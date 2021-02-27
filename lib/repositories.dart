@@ -34,11 +34,16 @@ class DFRepository {
 
   addColumn(String name, List entries) {
     List<Map<String, dynamic>> rows = this.df.rows.toList();
-    for (var i = 0; i < rows.length; i++) {
-      rows[i][name] = entries[i];
+    if (!rows[0].containsKey(name)) {
+      for (var i = 0; i < rows.length; i++) {
+        rows[i][name] = entries[i];
+      }
+      DataFrame newDF = DataFrame.fromRows(rows);
+      this.df = newDF;
+    } else {
+      log.severe("Column name $name is already taken.");
+      throw new Exception("Column name $name is already taken.");
     }
-    DataFrame newDF = DataFrame.fromRows(rows);
-    this.df = newDF;
   }
 }
 
@@ -72,7 +77,7 @@ class INRepository {
 
   Future<bool> loadFromFS() async {
     final Directory directory = await getApplicationDocumentsDirectory();
-    String path = "$directory.path/$INSIGHTS_STORAGE_NAME";
+    String path = "${directory.path}/$INSIGHTS_STORAGE_NAME";
     var file = new File(path);
     if (file.existsSync()) {
       var json = jsonDecode(await file.readAsString());
