@@ -6,6 +6,7 @@ import 'package:ofa_v0/views/loadingjson.dart';
 import 'package:ofa_v0/views/dashboard.dart';
 import 'package:ofa_v0/views/onboarding.dart';
 import 'package:ofa_v0/views/how_to_del.dart';
+import 'package:ofa_v0/views/authors.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/noJSON': (context) => NoJSON(),
         '/loadingJSON': (context) => LoadingJSON(),
         '/how_to_del': (context) => HowToDel(),
+        '/authors': (context) => Authors(),
         // '/more_websites': (context) => MoreWebsites(),
       }
     ); 
