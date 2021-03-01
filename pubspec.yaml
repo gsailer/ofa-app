@@ -63,7 +63,16 @@ flutter:
     - assets/icons/books2x.png
     - assets/icons/data2x.png
     - assets/icons/onboarding-footer.png
+    - assets/icons/authors.png
+    - assets/icons/delete.png
+    - assets/icons/feedback.png
+    - assets/icons/licenses.png
+    - assets/icons/settings.png
+    - assets/icons/settings2x.png
     - assets/images/ofa-back-dark.png
+    - assets/images/author_gabriel.jpg
+    - assets/images/author_dominik.jpg
+    - assets/images/author_polina.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
