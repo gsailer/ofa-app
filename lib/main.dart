@@ -7,6 +7,7 @@ import 'package:ofa_v0/views/dashboard.dart';
 import 'package:ofa_v0/views/onboarding.dart';
 import 'package:ofa_v0/views/how_to_del.dart';
 import 'package:ofa_v0/views/authors.dart';
+import 'package:ofa_v0/views/delete_confirm.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/loadingJSON': (context) => LoadingJSON(),
         '/how_to_del': (context) => HowToDel(),
         '/authors': (context) => Authors(),
+        '/delete_confirm': (context) => DeleteConfirm(),
         // '/more_websites': (context) => MoreWebsites(),
       }
     ); 
