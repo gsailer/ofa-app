@@ -30,9 +30,7 @@ class _DashBoard extends State<DashBoard> {
     sortedData = sortData(data);
     return Scaffold(
       drawer: Container(
-          width: MediaQuery.of(context).size.width * 0.8,
-          child: _drawer()
-        ),
+          width: MediaQuery.of(context).size.width * 0.8, child: _drawer()),
       backgroundColor: Color(0xff212121),
       appBar: AppBar(
         backgroundColor: Color(0xff212121),
@@ -44,6 +42,13 @@ class _DashBoard extends State<DashBoard> {
             },
           );
         }),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushNamed(context, '/delete_confirm');
+        },
+        child: Icon(Icons.navigation),
+        backgroundColor: Color(0xFFE93A68),
       ),
       body: ListView(
         // physics: const AlwaysScrollableScrollPhysics(),
@@ -64,150 +69,166 @@ class _DashBoard extends State<DashBoard> {
 
   Widget _drawer() {
     return Drawer(
-        
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            Container(
-              color: Color(0xff212121),
-              height: (MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top)  * 0.16,
-              child: DrawerHeader(
-                padding: EdgeInsets.zero,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.only(left: 20),
-                      child: Text(
-                        'Menu',
-                        style: TextStyle(color: Colors.white, fontSize: 17),
-                      ),
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          Container(
+            color: Color(0xff212121),
+            height: (MediaQuery.of(context).size.height -
+                    MediaQuery.of(context).padding.top) *
+                0.16,
+            child: DrawerHeader(
+              padding: EdgeInsets.zero,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(left: 20),
+                    child: Text(
+                      'Menu',
+                      style: TextStyle(color: Colors.white, fontSize: 17),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 20),
-                      child: IconButton(
-                        icon: Icon(Icons.close),
-                        color: Colors.white,
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                      ),
-                    )
-                  ],
-                ),
-
-                // ),
-              ),
-            ),
-
-            // height: 99999,
-            // decoration: BoxDecoration(
-            //   color: Color(0xff212121),
-            // ),
-
-            Container(
-              //TODO auto fill height
-              height: 999,
-              color: Color(0xff212121),
-              child: ListView(
-                shrinkWrap: true,
-                padding: EdgeInsets.zero,
-                children: [
-                  ListTile(
-                    title: Row(
-                      children: <Widget>[
-                        Icon(Icons.ac_unit, color: Colors.white),
-                        SizedBox(
-                          width: 11,
-                        ),
-                        Text(
-                          'How to delete your data from Facebook?',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(right: 20),
+                    child: IconButton(
+                      icon: Icon(Icons.close),
+                      color: Colors.white,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
-                    onTap: () {
-                      Navigator.pushNamed(context, '/how_to_del');
-                    },
-                  ),
-                  Divider(
-                    color: Colors.white,
-                    thickness: 2,
-                    indent: 10,
-                    endIndent: 10,
-                  ),
-                  ListTile(
-                    title: Row(
-                      children: <Widget>[
-                        Icon(Icons.ac_unit, color: Colors.white),
-                        SizedBox(
-                          width: 11,
-                        ),
-                        Text(
-                          'Feedback',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                    onTap: () {
-                      //TODO
-                      Navigator.pushNamed(context, '/how_to_del');
-                    },
-                  ),
-                  Divider(
-                    color: Colors.white,
-                    thickness: 2,
-                    indent: 10,
-                    endIndent: 10,
-                  ),
-                  ListTile(
-                    title: Row(
-                      children: <Widget>[
-                        Icon(Icons.ac_unit, color: Colors.white),
-                        SizedBox(
-                          width: 11,
-                        ),
-                        Text(
-                          'Authors',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                    onTap: () {
-                      //TODO
-                      Navigator.pushNamed(context, '/authors');
-                    },
-                  ),
-                  Divider(
-                    color: Colors.white,
-                    thickness: 2,
-                    indent: 10,
-                    endIndent: 10,
-                  ),
-                  ListTile(
-                    title: Row(
-                      children: <Widget>[
-                        Icon(Icons.ac_unit, color: Colors.white),
-                        SizedBox(
-                          width: 11,
-                        ),
-                        Text(
-                          'Licenses',
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                    onTap: () {
-                      //TODO
-                      Navigator.pushNamed(context, '/how_to_del');
-                    },
-                  ),
+                  )
                 ],
               ),
+
+              // ),
             ),
-          ],
-        ),
-      );
+          ),
+
+          // height: 99999,
+          // decoration: BoxDecoration(
+          //   color: Color(0xff212121),
+          // ),
+
+          Container(
+            //TODO auto fill height
+            height: MediaQuery.of(context).size.height -
+                ((MediaQuery.of(context).size.height -
+                        MediaQuery.of(context).padding.top) *
+                    0.16),
+            color: Color(0xff212121),
+            child: ListView(
+              shrinkWrap: true,
+              padding: EdgeInsets.zero,
+              children: [
+                ListTile(
+                  title: Row(
+                    children: <Widget>[
+                      ImageIcon(
+                        AssetImage("assets/icons/delete.png"),
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 11,
+                      ),
+                      Text(
+                        'How to delete your data from Facebook?',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/how_to_del');
+                  },
+                ),
+                Divider(
+                  color: Colors.white,
+                  thickness: 2,
+                  indent: 10,
+                  endIndent: 10,
+                ),
+                ListTile(
+                  title: Row(
+                    children: <Widget>[
+                      ImageIcon(
+                        AssetImage("assets/icons/feedback.png"),
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 11,
+                      ),
+                      Text(
+                        'Feedback',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    //TODO
+                    Navigator.pushNamed(context, '/how_to_del');
+                  },
+                ),
+                Divider(
+                  color: Colors.white,
+                  thickness: 2,
+                  indent: 10,
+                  endIndent: 10,
+                ),
+                ListTile(
+                  title: Row(
+                    children: <Widget>[
+                      ImageIcon(
+                        AssetImage("assets/icons/authors.png"),
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 11,
+                      ),
+                      Text(
+                        'Authors',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    //TODO
+                    Navigator.pushNamed(context, '/authors');
+                  },
+                ),
+                Divider(
+                  color: Colors.white,
+                  thickness: 2,
+                  indent: 10,
+                  endIndent: 10,
+                ),
+                ListTile(
+                  title: Row(
+                    children: <Widget>[
+                      ImageIcon(
+                        AssetImage("assets/icons/licenses.png"),
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 11,
+                      ),
+                      Text(
+                        'Licenses',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    //TODO
+                    Navigator.pushNamed(context, '/how_to_del');
+                  },
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget _insightCardWindow() {
