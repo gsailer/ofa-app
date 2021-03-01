@@ -29,7 +29,9 @@ class _AuthorsState extends State<Authors> {
       ),
       body: Container(
         //TODO auto fill height
-        height: 999,
+        height: MediaQuery.of(context).size.height -
+            MediaQuery.of(context).padding.top -
+            kToolbarHeight,
         color: Color(0xff212121),
         child: ListView(
           shrinkWrap: true,
@@ -48,36 +50,26 @@ class _AuthorsState extends State<Authors> {
             ListTile(
               title: Row(
                 children: <Widget>[
-                  Icon(Icons.account_circle, color: Colors.white),
-                  SizedBox(width: 11,),
-                  Expanded(child: Text("Gabriel Sailer\nRole", style: TextStyle(color: Colors.white),)),
-                  InkWell(
-                    child: Text(
-                      "Github\n", 
-                      style: TextStyle(color: Color(0xFFECB02D), decoration: TextDecoration.underline)
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundImage: AssetImage(
+                      'assets/images/author_dominik.jpg',
                     ),
-                    onTap: () => launch("https://github.com/sublinus"),
                   ),
-                ],
-              ),
-            ),
-            Divider(
-              color: Colors.white,
-              thickness: 2,
-              indent: 10,
-              endIndent: 10,
-            ),
-            ListTile(
-              title: Row(
-                children: <Widget>[
-                  Icon(Icons.account_circle, color: Colors.white),
-                  SizedBox(width: 11,),
-                  Expanded(child: Text("Dominik Prediger\nRole", style: TextStyle(color: Colors.white),)),
-                  InkWell(
+                  SizedBox(
+                    width: 11,
+                  ),
+                  Expanded(
                     child: Text(
-                      "Github", 
-                      style: TextStyle(color: Color(0xFFECB02D), decoration: TextDecoration.underline)
+                        "Dominik Prediger\nDeveloper",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
+                  InkWell(
+                    child: Text("Github",
+                        style: TextStyle(
+                            color: Color(0xFFECB02D),
+                            decoration: TextDecoration.underline)),
                     onTap: () => launch("https://github.com/DeadRbbt"),
                   ),
                 ],
@@ -92,16 +84,60 @@ class _AuthorsState extends State<Authors> {
             ListTile(
               title: Row(
                 children: <Widget>[
-                  Icon(Icons.account_circle, color: Colors.white),
-                  SizedBox(width: 11,),
-                  Expanded(child: Text("Author 3\nRole", style: TextStyle(color: Colors.white),)),
-                  InkWell(
-                    child: Text(
-                      "Website", 
-                      style: TextStyle(color: Color(0xFFECB02D), decoration: TextDecoration.underline)
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundImage: AssetImage(
+                      'assets/images/author_gabriel.jpg',
                     ),
-                    //TODO Website of designer
+                  ),
+                  SizedBox(
+                    width: 11,
+                  ),
+                  Expanded(
+                      child: Text(
+                    "Gabriel Sailer\nDeveloper",
+                    style: TextStyle(color: Colors.white),
+                  )),
+                  InkWell(
+                    child: Text("Github\n",
+                        style: TextStyle(
+                            color: Color(0xFFECB02D),
+                            decoration: TextDecoration.underline)),
                     onTap: () => launch("https://github.com/sublinus"),
+                  ),
+                ],
+              ),
+            ),
+            Divider(
+              color: Colors.white,
+              thickness: 2,
+              indent: 10,
+              endIndent: 10,
+            ),
+            ListTile(
+              title: Row(
+                children: <Widget>[
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundImage: AssetImage(
+                      'assets/images/author_polina.png',
+                    ),
+                  ),
+                  SizedBox(
+                    width: 11,
+                  ),
+                  Expanded(
+                      child: Text(
+                    "Polina Trofimova\nDesigner",
+                    style: TextStyle(color: Colors.white),
+                  )),
+                  InkWell(
+                    child: Text("Website",
+                        style: TextStyle(
+                            color: Color(0xFFECB02D),
+                            decoration: TextDecoration.underline)),
+                    //TODO Website of designer
+                    onTap: () => launch("https://otpolie.com/"),
                   ),
                 ],
               ),
