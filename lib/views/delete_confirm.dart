@@ -1,9 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ofa_v0/json_parser.dart';
-// import 'package:ofa_v0/views/more_websites.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:ofa_v0/views/insights_cards/OverviewInsightCard.dart';
-import 'package:ofa_v0/views/loadingjson.dart';
 
 class DeleteConfirm extends StatefulWidget {
   @override
