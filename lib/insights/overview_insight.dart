@@ -6,7 +6,10 @@ class OverviewInsight extends Insight {
   final String insightKey = "overview-insight";
   calcInsight(DFRepository repository, INRepository insightsRepo) {
     DataFrame df = repository.getDataframe();
-    Map data = {"apps": {}, "websites": {}};
+    Map<String, List<Map<String, dynamic>>> data = {
+      "apps": <Map<String, dynamic>>[],
+      "websites": <Map<String, dynamic>>[],
+    };
     /* {
       name: bla,
       count: 42,
@@ -14,31 +17,43 @@ class OverviewInsight extends Insight {
     }
     */
     for (var row in df.rows) {
+      // cast lists correctly
+      List<Map<String, dynamic>> apps = data["apps"];
+      List<Map<String, dynamic>> websites = data["websites"];
+
+      // differentiate apps and websites by marker in df
       if (row["app"]) {
-        if (data["apps"].containsKey(row["site"])) {
-          data["apps"][row["site"]]["count"] += 1;
-          data["apps"][row["site"]]["events"]
+        // check that counts and events are incremented
+        if (apps.any((element) => element["name"] == row["site"])) {
+          Map<String, dynamic> app =
+              apps.firstWhere((element) => element["name"] == row["site"]);
+          app["count"] += 1;
+          app["events"]
               .add({"timestamp": row["timestamp"], "type": row["event"]});
         } else {
-          data["apps"][row["site"]] = {
+          apps.add({
+            "name": row["site"],
             "count": 1,
             "events": [
               {"timestamp": row["timestamp"], "type": row["event"]}
             ]
-          };
+          });
         }
       } else {
-        if (data["websites"].containsKey(row["site"])) {
-          data["websites"][row["site"]]["count"] += 1;
-          data["websites"][row["site"]]["events"]
+        if (websites.any((element) => element["name"] == row["site"])) {
+          Map<String, dynamic> website =
+              websites.firstWhere((element) => element["name"] == row["site"]);
+          website["count"] += 1;
+          website["events"]
               .add({"timestamp": row["timestamp"], "type": row["event"]});
         } else {
-          data["websites"][row["site"]] = {
+          websites.add({
+            "name": row["site"],
             "count": 1,
             "events": [
               {"timestamp": row["timestamp"], "type": row["event"]}
             ]
-          };
+          });
         }
       }
     }
