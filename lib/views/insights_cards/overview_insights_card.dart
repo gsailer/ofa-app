@@ -13,7 +13,9 @@ class OverviewInsightCard extends InsightsCard {
   Widget build(BuildContext context) {
     var data = this.insightsArguments.insights.getInsight(insightKey);
     List<Map<String, dynamic>> apps =
-        data["apps"] as List<Map<String, dynamic>>;
+        (data["apps"] as List<Map<String, dynamic>>);
+    // sort apps by number of events
+    apps.sort((a, b) => (b["count"] as int).compareTo(a["count"] as int));
     //TODO Let the tile take up the whole screen when expanded (user should still be able to scroll to other tiles) and collapse other tiles
     return Theme(
       data: Theme.of(context).copyWith(
@@ -32,7 +34,7 @@ class OverviewInsightCard extends InsightsCard {
               ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: (apps.length > 2) ? apps.length - 2 : 0,
+                itemCount: (apps.length > 2) ? apps.length : 0,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.symmetric(vertical: 4, horizontal: 4),
