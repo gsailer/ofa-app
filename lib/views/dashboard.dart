@@ -50,20 +50,7 @@ class _DashBoard extends State<DashBoard> {
         child: Icon(Icons.navigation),
         backgroundColor: Color(0xFFE93A68),
       ),
-      body: ListView(
-        // physics: const AlwaysScrollableScrollPhysics(),
-        // shrinkWrap: true,
-        children: <Widget>[
-          //TODO get the right amount of websites and apps
-          _appsAndWebsitesCard(),
-          _appWebCardWindow(
-              "Web-sites that share your information (${data.offFacebookActivity.length})"),
-          _appWebCardWindow(
-              "Apps that share your information (${data.offFacebookActivity.length})"),
-
-          OverviewInsightCard(InsightsArguments(args.insights))
-        ],
-      ),
+      body: OverviewInsightCard(new InsightsArguments(args.insights)),
     );
   }
 

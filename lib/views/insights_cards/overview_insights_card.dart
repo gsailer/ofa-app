@@ -14,8 +14,24 @@ class OverviewInsightCard extends InsightsCard {
     var data = this.insightsArguments.insights.getInsight(insightKey);
     List<Map<String, dynamic>> apps =
         (data["apps"] as List<Map<String, dynamic>>);
+    List<Map<String, dynamic>> websites =
+        (data["websites"] as List<Map<String, dynamic>>);
+
+    return ListView(
+      // physics: const AlwaysScrollableScrollPhysics(),
+      // shrinkWrap: true,
+      children: <Widget>[
+        _detailElements(apps, context, "Apps"),
+        _detailElements(websites, context, "Websites"),
+      ],
+    );
+  }
+
+  Widget _detailElements(
+      List<Map<String, dynamic>> elements, BuildContext context, String type) {
     // sort apps by number of events
-    apps.sort((a, b) => (b["count"] as int).compareTo(a["count"] as int));
+    elements.sort((a, b) => (b["count"] as int).compareTo(a["count"] as int));
+
     //TODO Let the tile take up the whole screen when expanded (user should still be able to scroll to other tiles) and collapse other tiles
     return Theme(
       data: Theme.of(context).copyWith(
@@ -27,14 +43,14 @@ class OverviewInsightCard extends InsightsCard {
           contentPadding: EdgeInsets.symmetric(horizontal: 4),
           child: ExpansionTile(
             title: Text(
-              "Apps that share your information (${apps.length})",
+              "$type that share your information (${elements.length})",
               style: TextStyle(color: Colors.white),
             ),
             children: <Widget>[
               ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: (apps.length > 2) ? apps.length : 0,
+                itemCount: (elements.length > 2) ? elements.length : 0,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.symmetric(vertical: 4, horizontal: 4),
@@ -52,11 +68,11 @@ class OverviewInsightCard extends InsightsCard {
                           height: 44,
                         ),
                         title: Text(
-                          apps[index]["name"],
+                          elements[index]["name"],
                           style: TextStyle(color: Colors.white),
                         ),
                         subtitle: Text(
-                          apps[index]["count"].toString() + ' Events',
+                          elements[index]["count"].toString() + ' Events',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
