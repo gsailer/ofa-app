@@ -109,7 +109,7 @@ class _DashBoardFABState extends State<DashBoardFAB>
         splashColor: Colors.white,
         backgroundColor: Color(0xFFECB02D),
         onPressed: () {
-          Navigator.popUntil(context, ModalRoute.withName('/onboarding'));
+          Navigator.pushNamed(context, '/onboarding');
         },
         tooltip: 'Inbox',
         icon: Icon(Icons.refresh),
