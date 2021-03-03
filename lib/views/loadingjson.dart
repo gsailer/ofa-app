@@ -46,9 +46,8 @@ class _LoadingScreenState extends State<LoadingJSON> {
           allowMultiple: false);
 
       if (result != null) {
-        File zip = File(result.files.first.path);
         final archive_lib.Archive archive =
-            new archive_lib.ZipDecoder().decodeBytes(await zip.readAsBytes());
+            new archive_lib.ZipDecoder().decodeBytes(result.files.first.bytes);
 
         var json = await archive
             .findFile("ads_and_businesses/your_off-facebook_activity.json")
