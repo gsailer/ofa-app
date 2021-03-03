@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ofa_v0/views/licenses.dart';
 // import 'package:ofa_v0/views/more_websites.dart';
 import 'package:ofa_v0/views/nojson.dart';
 // import 'package:ofa_v0/json_parser.dart'
@@ -18,6 +19,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        backgroundColor: Color(0xff212121),
+        textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white))
+      ),
       title: 'OFA Prototype',
       //TODO: innitial rout should be /dashBoard if JSON was already loaded before
       initialRoute: '/onboarding',
@@ -33,6 +38,7 @@ class MyApp extends StatelessWidget {
         '/how_to_del': (context) => HowToDel(),
         '/authors': (context) => Authors(),
         '/delete_confirm': (context) => DeleteConfirm(),
+        '/licenses': (context) => OssLicensesPage(),
         // '/more_websites': (context) => MoreWebsites(),
       }
     ); 
