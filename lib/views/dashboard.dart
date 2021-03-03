@@ -4,6 +4,7 @@ import 'package:ofa_v0/json_parser.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:ofa_v0/views/insights_cards/overview_insights_card.dart';
 import 'package:ofa_v0/views/loadingjson.dart';
+import 'package:ofa_v0/views/widgets/dashboard_fab.dart';
 
 class DashBoard extends StatefulWidget {
   @override
@@ -43,13 +44,7 @@ class _DashBoard extends State<DashBoard> {
           );
         }),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/delete_confirm');
-        },
-        child: Icon(Icons.navigation),
-        backgroundColor: Color(0xFFE93A68),
-      ),
+      floatingActionButton: DashBoardFAB(),
       body: OverviewInsightCard(new InsightsArguments(args.insights)),
     );
   }
@@ -207,7 +202,7 @@ class _DashBoard extends State<DashBoard> {
                   ),
                   onTap: () {
                     //TODO
-                    Navigator.pushNamed(context, '/how_to_del');
+                    Navigator.pushNamed(context, '/licenses');
                   },
                 ),
               ],
