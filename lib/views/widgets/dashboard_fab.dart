@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ofa_v0/repositories.dart';
 
 // A custom FloatingActionButton with animation when toggled.
-// This was adapted from a post from Agung Surya on May 31, 2018 to the medium.com website: 
+// This was adapted from a post from Agung Surya on May 31, 2018 to the medium.com website:
 // https://medium.com/@agungsurya/create-a-simple-animated-floatingactionbutton-in-flutter-2d24f37cfbcc
 
 class DashBoardFAB extends StatefulWidget {
@@ -9,11 +10,13 @@ class DashBoardFAB extends StatefulWidget {
   final String tooltip;
   final IconData icon;
   final Object heroTag;
+  final INRepository repository;
 
-  DashBoardFAB({this.onPressed, this.tooltip, this.icon, this.heroTag});
+  DashBoardFAB(
+      {this.onPressed, this.tooltip, this.icon, this.heroTag, this.repository});
 
   @override
-  _DashBoardFABState createState() => _DashBoardFABState();
+  _DashBoardFABState createState() => _DashBoardFABState(repository);
 }
 
 class _DashBoardFABState extends State<DashBoardFAB>
@@ -25,6 +28,12 @@ class _DashBoardFABState extends State<DashBoardFAB>
   Animation<double> _translateButton;
   Curve _curve = Curves.easeOut;
   double _fabHeight = 400;
+
+  INRepository repository;
+
+  _DashBoardFABState(INRepository repository) {
+    this.repository = repository;
+  }
 
   @override
   initState() {
@@ -81,7 +90,9 @@ class _DashBoardFABState extends State<DashBoardFAB>
       child: FloatingActionButton.extended(
         splashColor: Colors.white,
         backgroundColor: Color(0xFFECB02D),
-        onPressed: () {
+        onPressed: () async {
+          // clean up
+          await this.repository.cleanUp();
           Navigator.pushReplacementNamed(context, '/delete_confirm');
         },
         tooltip: 'Image',
@@ -95,7 +106,6 @@ class _DashBoardFABState extends State<DashBoardFAB>
   Widget load() {
     return Container(
       child: FloatingActionButton.extended(
-        
         splashColor: Colors.white,
         backgroundColor: Color(0xFFECB02D),
         onPressed: () {
@@ -111,7 +121,7 @@ class _DashBoardFABState extends State<DashBoardFAB>
 
   Widget toggle() {
     return Container(
-      child: FloatingActionButton(  
+      child: FloatingActionButton(
         splashColor: Colors.white,
         backgroundColor: Color(0xFFE93A68),
         onPressed: animate,
@@ -120,7 +130,7 @@ class _DashBoardFABState extends State<DashBoardFAB>
           icon: AnimatedIcons.menu_close,
           progress: _animateIcon,
         ),
-      heroTag: "43451667",
+        heroTag: "43451667",
       ),
     );
   }
