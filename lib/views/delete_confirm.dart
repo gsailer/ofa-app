@@ -69,7 +69,7 @@ class _DashBoard extends State<DeleteConfirm> {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/');
               },
               style: ElevatedButton.styleFrom(
                 primary: Color(0xFFE93A68),

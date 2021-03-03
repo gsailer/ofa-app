@@ -101,6 +101,11 @@ class INRepository {
     await file.writeAsString(jsonEncode(store));
   }
 
+  cleanUp() async {
+    store = new Map();
+    await persist();
+  }
+
   /// Reads data from a json in AppDocument Storage
   /// and instanciates a new store.
   Future<bool> loadFromFS() async {
@@ -108,7 +113,7 @@ class INRepository {
     String path = "${directory.path}/$insightsStorageName";
     var file = new File(path);
     if (file.existsSync()) {
-      var json = jsonDecode(await file.readAsString());
+      Map<String, dynamic> json = jsonDecode(await file.readAsString());
       this.store = json;
       return true;
     } else {

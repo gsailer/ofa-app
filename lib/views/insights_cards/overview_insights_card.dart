@@ -13,11 +13,10 @@ class OverviewInsightCard extends InsightsCard {
 
   @override
   Widget build(BuildContext context) {
-    var data = this.insightsArguments.insights.getInsight(insightKey);
-    List<Map<String, dynamic>> apps =
-        (data["apps"] as List<Map<String, dynamic>>);
-    List<Map<String, dynamic>> websites =
-        (data["websites"] as List<Map<String, dynamic>>);
+    Map<String, dynamic> data =
+        this.insightsArguments.insights.getInsight(insightKey);
+    List<dynamic> apps = data["apps"];
+    List<dynamic> websites = data["websites"];
 
     return ListView(
       // physics: const AlwaysScrollableScrollPhysics(),
@@ -30,7 +29,7 @@ class OverviewInsightCard extends InsightsCard {
   }
 
   Widget _detailElements(
-      List<Map<String, dynamic>> elements, BuildContext context, String type) {
+      List<dynamic> elements, BuildContext context, String type) {
     // sort apps by number of events
     elements.sort((a, b) => (b["count"] as int).compareTo(a["count"] as int));
 

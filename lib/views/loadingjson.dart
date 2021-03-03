@@ -12,12 +12,6 @@ class LoadingJSON extends StatefulWidget {
   _LoadingScreenState createState() => _LoadingScreenState();
 }
 
-class DashboardArguments {
-  OFAjson data;
-  INRepository insights;
-  DashboardArguments(this.data, this.insights);
-}
-
 // TODO: Move to a better more sensible spot
 class InsightsArguments {
   INRepository insights;
@@ -73,7 +67,7 @@ class _LoadingScreenState extends State<LoadingJSON> {
         pipeline.trigger();
 
         Navigator.pushReplacementNamed(context, '/dashBoard',
-            arguments: DashboardArguments(jsonEvents, pipeline.insightsRepo));
+            arguments: pipeline.insightsRepo);
       } else {
         Navigator.of(context).pop();
         _alertDialog(
