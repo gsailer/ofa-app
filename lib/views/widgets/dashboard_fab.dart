@@ -76,43 +76,33 @@ class _DashBoardFABState extends State<DashBoardFAB>
     isOpened = !isOpened;
   }
 
-  Widget add() {
-    return Container(
-      child: Row(
-        children: [
-          RaisedButton.icon(onPressed: () {Navigator.pushNamed(context, '/licenses');}, icon: Icon(Icons.ac_unit), label: Text("Delete data from app"), color: Color(0xFFECB02D), highlightColor: Color(0xFFECB02D),),
-        ],
-        // onPressed: null,
-        // tooltip: 'Add',
-        // child: Icon(Icons.add),
-        // heroTag: "163452345",
-      ),
-    );
-  }
-
-  Widget image() {
+  Widget delete() {
     return Container(
       child: FloatingActionButton.extended(
         splashColor: Colors.white,
         backgroundColor: Color(0xFFECB02D),
-        onPressed: null,
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, '/delete_confirm');
+        },
         tooltip: 'Image',
-        icon: Icon(Icons.image),
+        icon: Icon(Icons.delete),
         heroTag: "26342516",
         label: Text("Delete data from app"),
       ),
     );
   }
 
-  Widget inbox() {
+  Widget load() {
     return Container(
       child: FloatingActionButton.extended(
         
         splashColor: Colors.white,
         backgroundColor: Color(0xFFECB02D),
-        onPressed: null,
+        onPressed: () {
+          Navigator.popUntil(context, ModalRoute.withName('/onboarding'));
+        },
         tooltip: 'Inbox',
-        icon: Icon(Icons.inbox,),
+        icon: Icon(Icons.refresh),
         heroTag: "37432513",
         label: Text("Load new data"),
       ),
@@ -124,7 +114,6 @@ class _DashBoardFABState extends State<DashBoardFAB>
       child: FloatingActionButton(  
         splashColor: Colors.white,
         backgroundColor: Color(0xFFE93A68),
-        // _buttonColor.value,
         onPressed: animate,
         tooltip: 'Toggle',
         child: AnimatedIcon(
@@ -142,21 +131,13 @@ class _DashBoardFABState extends State<DashBoardFAB>
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
-        // Transform(
-        //   transform: Matrix4.translationValues(
-        //     0.0,
-        //     _translateButton.value * 3.0,
-        //     0.0,
-        //   ),
-        //   child: add(),
-        // ),
         Transform(
           transform: Matrix4.translationValues(
             _translateButton.value,
             -14 * 2.0,
             0.0,
           ),
-          child: image(),
+          child: delete(),
         ),
         Transform(
           transform: Matrix4.translationValues(
@@ -164,7 +145,7 @@ class _DashBoardFABState extends State<DashBoardFAB>
             -14,
             0.0,
           ),
-          child: inbox(),
+          child: load(),
         ),
         toggle(),
       ],
