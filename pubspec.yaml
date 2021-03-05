@@ -31,6 +31,7 @@ dependencies:
   logging: ^0.11.4
   path_provider: ^1.6.27
   url_launcher: ^5.7.10
+  charts_flutter: ^0.9.0
 
 
   # The following adds the Cupertino Icons font to your application.

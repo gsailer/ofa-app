@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ofa_v0/views/insights_cards/insight.dart';
+import 'package:ofa_v0/views/insights_screens/insight.dart';
+import 'package:ofa_v0/views/insights_screens/insight_detail.dart';
 import 'package:ofa_v0/views/loadingjson.dart';
 
 class OverviewInsightCard extends InsightsCard {
@@ -62,6 +64,15 @@ class OverviewInsightCard extends InsightsCard {
                             width: 1,
                           )),
                       child: ListTile(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  InsightDetail(element: elements[index]),
+                            ),
+                          );
+                        },
                         leading: Image(
                           image: AssetImage('assets/images/3_todo.png'),
                           width: 44,

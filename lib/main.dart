@@ -9,6 +9,7 @@ import 'package:ofa_v0/views/onboarding.dart';
 import 'package:ofa_v0/views/how_to_del.dart';
 import 'package:ofa_v0/views/authors.dart';
 import 'package:ofa_v0/views/delete_confirm.dart';
+import 'package:ofa_v0/views/insights_screens/insight_detail.dart';
 
 void main() {
   runApp(MyApp());
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         '/authors': (context) => Authors(),
         '/delete_confirm': (context) => DeleteConfirm(),
         '/licenses': (context) => OssLicensesPage(),
+        // '/insight_detail': (context) => InsightDetail(appsAndWebsites: null,),
         // '/more_websites': (context) => MoreWebsites(),
       }
     ); 

@@ -1,6 +1,7 @@
 import 'package:df/df.dart';
 import 'package:ofa_v0/insights/insight.dart';
 import 'package:ofa_v0/repositories.dart';
+import "package:collection/collection.dart";
 
 class OverviewInsight extends Insight {
   final String insightKey = "overview-insight";
@@ -16,11 +17,12 @@ class OverviewInsight extends Insight {
       events: [{timestamp, type}]
     }
     */
-    for (var row in df.rows) {
-      // cast lists correctly
-      List<Map<String, dynamic>> apps = data["apps"];
-      List<Map<String, dynamic>> websites = data["websites"];
 
+    // cast lists correctly
+    List<Map<String, dynamic>> apps = data["apps"];
+    List<Map<String, dynamic>> websites = data["websites"];
+
+    for (var row in df.rows) {
       // differentiate apps and websites by marker in df
       if (row["app"]) {
         // check that counts and events are incremented
@@ -56,6 +58,14 @@ class OverviewInsight extends Insight {
           });
         }
       }
+    }
+
+    for (Map<String, dynamic> app in apps) {
+      app["events_by_type"] = groupBy(app["events"], (event) => event["type"]);
+    }
+    for (Map<String, dynamic> website in websites) {
+      website["events_by_type"] =
+          groupBy(website["events"], (event) => event["type"]);
     }
     insightsRepo.addInsight(insightKey, data);
   }
