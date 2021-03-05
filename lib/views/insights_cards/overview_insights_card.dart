@@ -4,6 +4,7 @@ import 'package:ofa_v0/views/insights_cards/insight.dart';
 import 'package:ofa_v0/views/insights_screens/insight.dart';
 import 'package:ofa_v0/views/insights_screens/insight_detail.dart';
 import 'package:ofa_v0/views/loadingjson.dart';
+import 'package:provider/provider.dart';
 
 class OverviewInsightCard extends InsightsCard {
   final String insightKey = "overview-insight";
@@ -15,16 +16,21 @@ class OverviewInsightCard extends InsightsCard {
   Widget build(BuildContext context) {
     Map<String, dynamic> data =
         this.insightsArguments.insights.getInsight(insightKey);
-    List<dynamic> apps = data["apps"];
-    List<dynamic> websites = data["websites"];
 
-    return ListView(
-      // physics: const AlwaysScrollableScrollPhysics(),
-      // shrinkWrap: true,
-      children: <Widget>[
-        _detailElements(apps, context, "Apps"),
-        _detailElements(websites, context, "Websites"),
-      ],
+    var dateFilter = Provider.of<FilterState>(context).getTimeFilter;
+    List<dynamic> apps = data["apps"].where(dateFilter);
+    List<dynamic> websites = data["websites"].where(dateFilter);
+
+    return MultiProvider(
+      providers: [ChangeNotifierProvider.value(value: FilterState())],
+      child: ListView(
+        // physics: const AlwaysScrollableScrollPhysics(),
+        // shrinkWrap: true,
+        children: <Widget>[
+          _detailElements(apps, context, "Apps"),
+          _detailElements(websites, context, "Websites"),
+        ],
+      ),
     );
   }
 
@@ -95,5 +101,22 @@ class OverviewInsightCard extends InsightsCard {
         ),
       ),
     );
+  }
+}
+
+class FilterState extends ChangeNotifier {
+  DateTime _startTime = new DateTime(2004, 2, 3);
+  DateTime _endTime = DateTime.now();
+
+  DateTimeRange get getTimeFilter =>
+      new DateTimeRange(start: _startTime, end: _endTime);
+
+  void setTimes(DateTime startTime, DateTime endTime) {
+    if (startTime.isBefore(endTime)) {
+      return;
+    }
+    _startTime = startTime;
+    _endTime = endTime;
+    notifyListeners();
   }
 }
