@@ -15,14 +15,25 @@ class _InsightDetailState extends State<InsightDetail> {
   List<charts.Series<EventRatio, String>> _seriesPieData;
   _generateData() {
     // TODO: better mechanism for colors
-    var color = Colors.red;
+    //hier zu jedem event ein festen color damit es einheitlich bleibt zwischen den apps/websites
+    List<Color> eventColor = [
+      Colors.red,
+      Colors.orange,
+      Colors.pink,
+      Colors.green,
+    	Colors.blue
+    ];
+
     List<EventRatio> pieData =
         Map<String, List<dynamic>>.from(widget.element["events_by_type"])
             .keys
             .map((String eventType) => new EventRatio(eventType,
-                widget.element["events_by_type"][eventType].length, color))
+                widget.element["events_by_type"][eventType].length, Colors.purple))
             .toList();
 
+    for (var i = 0; i<pieData.length; i++){
+      pieData[i].color = eventColor[i];
+    }
     _seriesPieData.add(
       charts.Series(
           data: pieData,
