@@ -18,7 +18,7 @@ class OverviewInsight extends Insight {
     }
     */
 
-              // cast lists correctly
+    // cast lists correctly
     List<Map<String, dynamic>> apps = data["apps"];
     List<Map<String, dynamic>> websites = data["websites"];
 
@@ -60,18 +60,13 @@ class OverviewInsight extends Insight {
       }
     }
 
-    int counter = 0;
     for (Map<String, dynamic> app in apps) {
-
-      app["events_by_type"] =
-        groupBy(app["events"], (event) => event["type"]);
-
-      print("\n");
-      print(app["name"]);
-      print(app["events_by_type"]);
+      app["events_by_type"] = groupBy(app["events"], (event) => event["type"]);
     }
-    
-
+    for (Map<String, dynamic> website in websites) {
+      website["events_by_type"] =
+          groupBy(website["events"], (event) => event["type"]);
+    }
     insightsRepo.addInsight(insightKey, data);
   }
 }

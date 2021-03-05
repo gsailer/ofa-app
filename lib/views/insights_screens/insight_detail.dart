@@ -1,7 +1,6 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:ofa_v0/views/widgets/events_pie_chart.dart';
 
 class InsightDetail extends StatefulWidget {
@@ -15,12 +14,14 @@ class InsightDetail extends StatefulWidget {
 class _InsightDetailState extends State<InsightDetail> {
   List<charts.Series<EventRatio, String>> _seriesPieData;
   _generateData() {
-    var pieData = [
-      new EventRatio("PURCHASE", (widget.element["count"] * 0.3).round(), Colors.green),
-      new EventRatio("OPEN_APP", (widget.element["count"] * 1.2).round(), Colors.blue),
-      new EventRatio("OTHER", (widget.element["count"] * 2.1).round(), Colors.orange),
-      new EventRatio("CUSTOM", (widget.element["count"] * 1.7).round(), Colors.red),
-    ];
+    // TODO: better mechanism for colors
+    var color = Colors.red;
+    List<EventRatio> pieData =
+        Map<String, List<dynamic>>.from(widget.element["events_by_type"])
+            .keys
+            .map((String eventType) => new EventRatio(eventType,
+                widget.element["events_by_type"][eventType].length, color))
+            .toList();
 
     _seriesPieData.add(
       charts.Series(
@@ -102,7 +103,7 @@ class _InsightDetailState extends State<InsightDetail> {
                             ),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: ' has tracked ',
+                                  text: ' has provided ',
                                   style: TextStyle(
                                       fontSize: 15, color: Colors.white)),
                               TextSpan(
@@ -122,8 +123,8 @@ class _InsightDetailState extends State<InsightDetail> {
                       child: Column(
                         children: [
                           Align(
-                            alignment: Alignment.topLeft,
-                            child: Text("Event ratio:")),
+                              alignment: Alignment.topLeft,
+                              child: Text("Event ratio:")),
                           SizedBox(
                               width: MediaQuery.of(context).size.width * 0.9,
                               height: MediaQuery.of(context).size.width * 0.9,
