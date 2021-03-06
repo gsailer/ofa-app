@@ -39,7 +39,7 @@ main() {
 }
 
 OFAjson ofaData() {
-  var file = new File("test_resources/ofa_example.json");
+  var file = new File("test/test_resources/ofa_example.json");
   final json = jsonDecode(file.readAsStringSync());
   return OFAjson.fromJson(json);
 }
