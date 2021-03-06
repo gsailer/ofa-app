@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ofa_v0/views/insights_cards/insight.dart';
@@ -7,6 +5,7 @@ import 'package:ofa_v0/views/insights_screens/insight.dart';
 import 'package:ofa_v0/views/insights_screens/insight_detail.dart';
 import 'package:ofa_v0/views/loadingjson.dart';
 import 'package:provider/provider.dart';
+import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
 
 class OverviewInsightCard extends InsightsCard {
   final String insightKey = "overview-insight";
@@ -29,16 +28,28 @@ class OverviewInsightCard extends InsightsCard {
             onTap: () => _activateFilter(context),
             child: Center(
                 child: Text(
-                    Provider.of<FilterState>(context).startTime.toString()))),
+                    '${Provider.of<FilterState>(context).startTime.toString()} - ${Provider.of<FilterState>(context).endTime.toString()}'))),
         _detailElements(apps, context, "Apps"),
         _detailElements(websites, context, "Websites"),
       ],
     );
   }
 
-  void _activateFilter(BuildContext context) {
-    Provider.of<FilterState>(context, listen: false)
-        .setTimes(new DateTime(2020), new DateTime(2020, 8));
+  void _activateFilter(BuildContext context) async {
+    DateTime startTime =
+        Provider.of<FilterState>(context, listen: false).startTime;
+    DateTime endTime = Provider.of<FilterState>(context, listen: false).endTime;
+
+    final List<DateTime> picked = await DateRagePicker.showDatePicker(
+        context: context,
+        initialFirstDate: startTime,
+        initialLastDate: endTime,
+        firstDate: new DateTime(2004),
+        lastDate: new DateTime.now());
+    if (picked != null && picked.length == 2) {
+      Provider.of<FilterState>(context, listen: false)
+          .setTimes(picked[0], picked[1]);
+    }
   }
 
   bool _filterTime(BuildContext context, Map<String, dynamic> element) {
