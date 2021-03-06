@@ -104,11 +104,6 @@ class _InsightDetailState extends State<InsightDetail> {
                       ),
                     ),
                   ),
-                  // Padding(
-                  //   padding: const EdgeInsets.all(8.0),
-                  //   child: Text(element["name"].toString() + " has tracked " + element["count"].toString() + " of your events "
-                  //       ),
-                  // ),
                   Container(
                     child: Align(
                       alignment: Alignment.centerLeft,
@@ -142,13 +137,9 @@ class _InsightDetailState extends State<InsightDetail> {
                       child: Column(
                         children: [
                           Container(
-                            // decoration: BoxDecoration(
-                            //     borderRadius: BorderRadius.circular(10.0),
-                            //     border: Border.all(color: Colors.white)),
                             child: Row(
                               children: [
                                 Expanded(
-                                  // alignment: Alignment.topLeft,
                                   child: Text("Event ratio:"),
                                 ),
                                 IconButton(
@@ -172,11 +163,8 @@ class _InsightDetailState extends State<InsightDetail> {
             ),
           ),
           Container(
-            // decoration: BoxDecoration(
-            //     borderRadius: BorderRadius.circular(10.0),
-            //     border: Border.all(color: Colors.white)),
             child: SizedBox(
-                width: MediaQuery.of(context).size.width *0.8,
+                width: MediaQuery.of(context).size.width * 0.8,
                 height: MediaQuery.of(context).size.width * 0.8,
                 child: DonutAutoLabelChart(_seriesPieData)),
           ),
@@ -255,7 +243,8 @@ class _InsightDetailState extends State<InsightDetail> {
       },
       {
         "type": "ADD_PAYMENT_INFO",
-        "description": ":  you added payment information during a checkout process."
+        "description":
+            ":  you added payment information during a checkout process."
       },
       {
         "type": "ADD_TO_CART",
@@ -267,7 +256,8 @@ class _InsightDetailState extends State<InsightDetail> {
       },
       {
         "type": "CUSTOMIZE_PRODUCT",
-        "description": ": you customized products through a configuration tool or other application your business owns."
+        "description":
+            ": you customized products through a configuration tool or other application your business owns."
       },
       {
         "type": "DONATE",
@@ -275,7 +265,8 @@ class _InsightDetailState extends State<InsightDetail> {
       },
       {
         "type": "FIND_LOCATION",
-        "description": ": you searched for the location of the store via a website or app"
+        "description":
+            ": you searched for the location of the store via a website or app"
       },
       {
         "type": "INITIATE_CHECKOUT",
@@ -283,15 +274,18 @@ class _InsightDetailState extends State<InsightDetail> {
       },
       {
         "type": "SCHEDULE",
-        "description": ": you booked an appointment to visit one of the apps or websites locations."
+        "description":
+            ": you booked an appointment to visit one of the apps or websites locations."
       },
       {
         "type": "SUBMIT_APPLICATION",
-        "description": ": you submitted an application for a product, service or program the app or website offers."
+        "description":
+            ": you submitted an application for a product, service or program the app or website offers."
       },
       {
         "type": "SUBSCRIBE",
-        "description": ": you started a paid subscription for a product or service the app or website offers."
+        "description":
+            ": you started a paid subscription for a product or service the app or website offers."
       },
       {
         "type": "VIEW_CONTENT",
@@ -305,8 +299,6 @@ class _InsightDetailState extends State<InsightDetail> {
         "type": "START_TRIAL",
         "description": ": you started a free trial of a product or service."
       },
-
-
     ];
 
     showDialog(
@@ -319,20 +311,12 @@ class _InsightDetailState extends State<InsightDetail> {
               child: Stack(
                 children: <Widget>[
                   Container(
-                    // padding:
-                    //     EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
-                    // margin: EdgeInsets.only(top: 10),
                     decoration: BoxDecoration(
                         // shape: BoxShape.rectangle,
                         color: Theme.of(context).backgroundColor,
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(color: Colors.white)
-                        // boxShadow: [
-                        //   BoxShadow(
-                        //       color: Colors.white,
-                        //       offset: Offset(0, 0),
-                        //       blurRadius: 10),
-                        // ]
+
                         ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
@@ -344,7 +328,6 @@ class _InsightDetailState extends State<InsightDetail> {
                             style: TextStyle(fontSize: 23),
                           ),
                         ),
-
                         for (Map<String, dynamic> def in definitions)
                           if (events
                               .any((element) => element["type"] == def["type"]))
@@ -366,61 +349,6 @@ class _InsightDetailState extends State<InsightDetail> {
                                     ]),
                               ),
                             ),
-
-                        // if (events
-                        //     .any((element) => element["type"] == "RESULT_SENT"))
-                        //   Text("RESULT_SENT"),
-
-                        // if (events.any((element) => element["type"] == "LEAD"))
-                        //   Text("LEAD" + ": you completed a sign up."),
-
-                        // if (events
-                        //     .any((element) => element["type"] == "PAGE_VIEW"))
-                        //   Text("PAGE_VIEW" +
-                        //       ": you landed on a page on this website or app."),
-
-                        // if (events.any((element) =>
-                        //     element["type"] == "COMPLETE_REGISTRATION"))
-                        //   Text("COMPLETE_REGISTRATION" +
-                        //       ": you completed a registration form."),
-
-                        // if (events
-                        //     .any((element) => element["type"] == "AD_REQUEST"))
-                        //   Text("AD_REQUEST")
-
-                        // if (events.any(
-                        //     (element) => element["type"] == "SPENT_CREDITS"))
-                        //   Text("SPENT_CREDITS" +
-                        //       ": you spent credits in this app or website"),
-
-                        // if (events.any(
-                        //     (element) => element["type"] == "TOSIMPRESSION"))
-                        //   Text("TOSIMPRESSION")
-
-                        // if (events
-                        //     .any((element) => element["type"] == "AD_CLICK"))
-                        //   Text("AD_CLICK" + ": you clicked on an add."),
-
-                        // if (events
-                        //     .any((element) => element["type"] == "CONTACT"))
-                        //   Text("CONTACT" +
-                        //       ": you initiated contact with the apps or websites business via telephone, SMS, email, chat, etc."),
-
-                        // if (events
-                        //     .any((element) => element["type"] == "PURCHASE"))
-                        //   Text("PURCHASE" +
-                        //       ": you made a purchase or completed a checkout flow."),
-
-                        // if (events
-                        //     .any((element) => element["type"] == "SEARCH"))
-                        //   Text("SEARCH" +
-                        //       ": you made a search in the app or website."),
-
-                        // if (events
-                        //     .any((element) => element["type"] == "START_TRIAL"))
-                        //   Text("START_TRIAL" +
-                        //       ": you started a free trial of a product or service."),
-
                         Align(
                           alignment: Alignment.bottomRight,
                           child: Padding(
