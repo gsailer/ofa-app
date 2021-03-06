@@ -120,6 +120,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  date_range_picker:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "87993aa58bbfff82d0f40d7b14edabfdc6d73eef"
+      url: "https://github.com/LempereurBenjamin/date_range_picker"
+    source: git
+    version: "1.0.6"
   df:
     dependency: "direct main"
     description:
