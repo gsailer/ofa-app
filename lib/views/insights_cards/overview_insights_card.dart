@@ -4,6 +4,8 @@ import 'package:ofa_v0/views/insights_cards/insight.dart';
 import 'package:ofa_v0/views/insights_screens/insight.dart';
 import 'package:ofa_v0/views/insights_screens/insight_detail.dart';
 import 'package:ofa_v0/views/loadingjson.dart';
+import 'package:provider/provider.dart';
+import 'package:date_range_picker/date_range_picker.dart' as DateRagePicker;
 
 class OverviewInsightCard extends InsightsCard {
   final String insightKey = "overview-insight";
@@ -13,26 +15,61 @@ class OverviewInsightCard extends InsightsCard {
 
   @override
   Widget build(BuildContext context) {
-    var data = this.insightsArguments.insights.getInsight(insightKey);
-    List<Map<String, dynamic>> apps =
-        (data["apps"] as List<Map<String, dynamic>>);
-    List<Map<String, dynamic>> websites =
-        (data["websites"] as List<Map<String, dynamic>>);
+    Map<String, dynamic> data =
+        this.insightsArguments.insights.getInsight(insightKey);
+    List<dynamic> apps = data["apps"];
+    List<dynamic> websites = data["websites"];
 
     return ListView(
       // physics: const AlwaysScrollableScrollPhysics(),
       // shrinkWrap: true,
       children: <Widget>[
+        GestureDetector(
+            onTap: () => _activateFilter(context),
+            child: Center(
+                child: Text(
+                    '${Provider.of<FilterState>(context).startTime.toString()} - ${Provider.of<FilterState>(context).endTime.toString()}'))),
         _detailElements(apps, context, "Apps"),
         _detailElements(websites, context, "Websites"),
       ],
     );
   }
 
+  void _activateFilter(BuildContext context) async {
+    DateTime startTime =
+        Provider.of<FilterState>(context, listen: false).startTime;
+    DateTime endTime = Provider.of<FilterState>(context, listen: false).endTime;
+
+    final List<DateTime> picked = await DateRagePicker.showDatePicker(
+        context: context,
+        initialFirstDate: startTime,
+        initialLastDate: endTime,
+        firstDate: new DateTime(2004),
+        lastDate: new DateTime.now());
+    if (picked != null && picked.length == 2) {
+      Provider.of<FilterState>(context, listen: false)
+          .setTimes(picked[0], picked[1]);
+    }
+  }
+
+  bool _filterTime(BuildContext context, Map<String, dynamic> element) {
+    DateTime startTime = Provider.of<FilterState>(context).startTime;
+    DateTime endTime = Provider.of<FilterState>(context).endTime;
+
+    //speed up check with min / max check?
+    return List<Map<String, dynamic>>.from(element['events'])
+        .map((event) => DateTime.fromMillisecondsSinceEpoch(
+            ((event['timestamp'] as int) * 1000)))
+        .any((time) => (startTime.isBefore(time) && endTime.isAfter(time)));
+  }
+
   Widget _detailElements(
-      List<Map<String, dynamic>> elements, BuildContext context, String type) {
+      List<dynamic> elements, BuildContext context, String type) {
+    var tileData = List.from(elements);
     // sort apps by number of events
-    elements.sort((a, b) => (b["count"] as int).compareTo(a["count"] as int));
+    tileData.sort((a, b) => (b["count"] as int).compareTo(a["count"] as int));
+    tileData = List<Map<String, dynamic>>.from(
+        tileData.where((element) => _filterTime(context, element)));
 
     //TODO Let the tile take up the whole screen when expanded (user should still be able to scroll to other tiles) and collapse other tiles
     return Theme(
@@ -45,14 +82,14 @@ class OverviewInsightCard extends InsightsCard {
           contentPadding: EdgeInsets.symmetric(horizontal: 4),
           child: ExpansionTile(
             title: Text(
-              "$type that share your information (${elements.length})",
+              "$type that share your information (${tileData.length})",
               style: TextStyle(color: Colors.white),
             ),
             children: <Widget>[
               ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: (elements.length > 2) ? elements.length : 0,
+                itemCount: (tileData.length > 0) ? tileData.length : 0,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.symmetric(vertical: 4, horizontal: 4),
@@ -69,7 +106,7 @@ class OverviewInsightCard extends InsightsCard {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  InsightDetail(element: elements[index]),
+                                  InsightDetail(element: tileData[index]),
                             ),
                           );
                         },
@@ -79,11 +116,11 @@ class OverviewInsightCard extends InsightsCard {
                           height: 44,
                         ),
                         title: Text(
-                          elements[index]["name"],
+                          tileData[index]["name"],
                           style: TextStyle(color: Colors.white),
                         ),
                         subtitle: Text(
-                          elements[index]["count"].toString() + ' Events',
+                          tileData[index]["count"].toString() + ' Events',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -96,5 +133,29 @@ class OverviewInsightCard extends InsightsCard {
         ),
       ),
     );
+  }
+}
+
+class FilterState extends ChangeNotifier {
+  DateTime startTime = new DateTime(2004);
+  DateTime endTime = new DateTime.now();
+  int numberOfEvents;
+
+  FilterState({this.startTime, this.endTime, this.numberOfEvents});
+
+  void setTimes(DateTime start, DateTime end) {
+    this.startTime = start;
+    this.endTime = end;
+    notifyListeners();
+  }
+
+  void setNumberOfEvent(int num) {
+    this.numberOfEvents = num;
+    notifyListeners();
+  }
+
+  void incrementNumberOfEvents() {
+    this.numberOfEvents++;
+    notifyListeners();
   }
 }

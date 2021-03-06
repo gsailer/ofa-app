@@ -10,7 +10,9 @@ class AppExtractor extends Transformation {
   calcTransformation(DFRepository repository) {
     DataFrame df = repository.getDataframe();
     // regex to recognise websites
-    RegExp isWebsite = new RegExp(r"\.[a-z]+?");
+    // matches strings, that start with lowercase letters
+    // and end with . and lowercase letters
+    RegExp isWebsite = new RegExp(r"^[a-z]+.*\.[a-z]+?$");
     List<bool> isApp = [];
     for (var row in df.rows) {
       String name = row["site"];

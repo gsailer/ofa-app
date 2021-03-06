@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:ofa_v0/json_parser.dart';
 // import 'package:ofa_v0/views/more_websites.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:ofa_v0/repositories.dart';
 import 'package:ofa_v0/views/insights_cards/overview_insights_card.dart';
 import 'package:ofa_v0/views/loadingjson.dart';
 import 'package:ofa_v0/views/widgets/dashboard_fab.dart';
+import 'package:provider/provider.dart';
 
 class DashBoard extends StatefulWidget {
   @override
@@ -26,9 +28,8 @@ class _DashBoard extends State<DashBoard> {
 
   @override
   Widget build(BuildContext context) {
-    DashboardArguments args = ModalRoute.of(context).settings.arguments;
-    data = args.data;
-    sortedData = sortData(data);
+    INRepository insights = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       drawer: Container(
           width: MediaQuery.of(context).size.width * 0.8, child: _drawer()),
@@ -44,8 +45,13 @@ class _DashBoard extends State<DashBoard> {
           );
         }),
       ),
-      floatingActionButton: DashBoardFAB(),
-      body: OverviewInsightCard(new InsightsArguments(args.insights)),
+      floatingActionButton: DashBoardFAB(repository: insights),
+      body: ChangeNotifierProvider<FilterState>(
+          create: (_) => FilterState(
+              startTime: new DateTime(2004, 2, 3),
+              endTime: DateTime.now(),
+              numberOfEvents: 0),
+          child: OverviewInsightCard(new InsightsArguments(insights))),
     );
   }
 

@@ -120,6 +120,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
+  date_range_picker:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "87993aa58bbfff82d0f40d7b14edabfdc6d73eef"
+      url: "https://github.com/LempereurBenjamin/date_range_picker"
+    source: git
+    version: "1.0.6"
   df:
     dependency: "direct main"
     description:
@@ -289,6 +298,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "12.17.10"
+  nested:
+    dependency: transitive
+    description:
+      name: nested
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   node_interop:
     dependency: transitive
     description:
@@ -394,6 +410,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.13"
+  provider:
+    dependency: "direct main"
+    description:
+      name: provider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.0"
   pub_semver:
     dependency: transitive
     description:

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:ofa_v0/json_parser.dart';
 import 'package:ofa_v0/repositories.dart';
 import 'package:test/test.dart';
@@ -41,7 +39,7 @@ main() {
 }
 
 OFAjson ofaData() {
-  var file = new File("test_resources/ofa_example.json");
+  var file = new File("test/test_resources/ofa_example.json");
   final json = jsonDecode(file.readAsStringSync());
   return OFAjson.fromJson(json);
 }
