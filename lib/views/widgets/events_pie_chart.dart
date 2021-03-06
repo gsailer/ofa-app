@@ -15,25 +15,9 @@ class DonutAutoLabelChart extends StatelessWidget {
   Widget build(BuildContext context) {
     return new charts.PieChart(seriesList,
         animate: animate,
-        
-        // Configure the width of the pie slices to 60px. The remaining space in
-        // the chart will be left as a hole in the center.
-        //
-        // [ArcLabelDecorator] will automatically position the label inside the
-        // arc if the label will fit. If the label will not fit, it will draw
-        // outside of the arc with a leader line. Labels can always display
-        // inside or outside using [LabelPosition].
-        //
-        // Text style for inside / outside can be controlled independently by
-        // setting [insideLabelStyleSpec] and [outsideLabelStyleSpec].
-        //
-        // Example configuring different styles for inside/outside:
-             
         defaultRenderer: new charts.ArcRendererConfig(
-
             arcWidth: 80,
             startAngle: -pi/2 + 0.05,
-           
             arcRendererDecorators: [new charts.ArcLabelDecorator(
                  insideLabelStyleSpec: new charts.TextStyleSpec(
                    color: charts.MaterialPalette.black,
