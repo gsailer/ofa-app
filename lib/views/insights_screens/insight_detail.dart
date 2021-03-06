@@ -176,8 +176,8 @@ class _InsightDetailState extends State<InsightDetail> {
             //     borderRadius: BorderRadius.circular(10.0),
             //     border: Border.all(color: Colors.white)),
             child: SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.width,
+                width: MediaQuery.of(context).size.width *0.8,
+                height: MediaQuery.of(context).size.width * 0.8,
                 child: DonutAutoLabelChart(_seriesPieData)),
           ),
         ]),
@@ -253,6 +253,60 @@ class _InsightDetailState extends State<InsightDetail> {
         "type": "START_TRIAL",
         "description": ": you started a free trial of a product or service."
       },
+      {
+        "type": "ADD_PAYMENT_INFO",
+        "description": ":  you added payment information during a checkout process."
+      },
+      {
+        "type": "ADD_TO_CART",
+        "description": ": you added an item to a shopping cart or basket"
+      },
+      {
+        "type": "ADD_TO_WISHLIST",
+        "description": ": you added items to a wishlist."
+      },
+      {
+        "type": "CUSTOMIZE_PRODUCT",
+        "description": ": you customized products through a configuration tool or other application your business owns."
+      },
+      {
+        "type": "DONATE",
+        "description": ": you donated funds to an organization or cause."
+      },
+      {
+        "type": "FIND_LOCATION",
+        "description": ": you searched for the location of the store via a website or app"
+      },
+      {
+        "type": "INITIATE_CHECKOUT",
+        "description": ": you started a checkout process."
+      },
+      {
+        "type": "SCHEDULE",
+        "description": ": you booked an appointment to visit one of the apps or websites locations."
+      },
+      {
+        "type": "SUBMIT_APPLICATION",
+        "description": ": you submitted an application for a product, service or program the app or website offers."
+      },
+      {
+        "type": "SUBSCRIBE",
+        "description": ": you started a paid subscription for a product or service the app or website offers."
+      },
+      {
+        "type": "VIEW_CONTENT",
+        "description": ":  you visited a web page you care about."
+      },
+      {
+        "type": "START_TRIAL",
+        "description": ": you started a free trial of a product or service."
+      },
+      {
+        "type": "START_TRIAL",
+        "description": ": you started a free trial of a product or service."
+      },
+
+
     ];
 
     showDialog(
