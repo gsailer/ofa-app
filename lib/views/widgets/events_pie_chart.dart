@@ -1,3 +1,5 @@
+import 'dart:math';
+
 /// Donut chart with labels example. This is a simple pie chart with a hole in
 /// the middle.
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -8,16 +10,6 @@ class DonutAutoLabelChart extends StatelessWidget {
   final bool animate;
 
   DonutAutoLabelChart(this.seriesList, {this.animate});
-
-  /// Creates a [PieChart] with sample data and no transition.
-  factory DonutAutoLabelChart.withSampleData() {
-    return new DonutAutoLabelChart(
-      _createSampleData(),
-      // Disable animations for image tests.
-      animate: false,
-    );
-  }
-
 
   @override
   Widget build(BuildContext context) {
@@ -38,42 +30,20 @@ class DonutAutoLabelChart extends StatelessWidget {
         // Example configuring different styles for inside/outside:
              
         defaultRenderer: new charts.ArcRendererConfig(
-            arcWidth: 80,
+
+            arcWidth: 90,
+            startAngle: -pi/2 + 0.05,
+           
             arcRendererDecorators: [new charts.ArcLabelDecorator(
                  insideLabelStyleSpec: new charts.TextStyleSpec(
                    color: charts.MaterialPalette.black,
-                   fontSize: 13),
+                   fontSize: 13
+                   ),
                  outsideLabelStyleSpec: new charts.TextStyleSpec(
                    color: charts.MaterialPalette.white,
-                   fontSize: 13)),]));
+                   fontSize: 12
+                   )),
+                   ]
+                   ));
   }
-
-  /// Create one series with sample hard coded data.
-  static List<charts.Series<LinearSales, int>> _createSampleData() {
-    final data = [
-      new LinearSales(0, 100),
-      new LinearSales(1, 75),
-      new LinearSales(2, 25),
-      new LinearSales(3, 5),
-    ];
-
-    return [
-      new charts.Series<LinearSales, int>(
-        id: 'Sales',
-        domainFn: (LinearSales sales, _) => sales.year,
-        measureFn: (LinearSales sales, _) => sales.sales,
-        data: data,
-        // Set a label accessor to control the text of the arc label.
-        labelAccessorFn: (LinearSales row, _) => '${row.year}: ${row.sales}',
-      )
-    ];
-  }
-}
-
-/// Sample linear data type.
-class LinearSales {
-  final int year;
-  final int sales;
-
-  LinearSales(this.year, this.sales);
 }
