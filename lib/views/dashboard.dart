@@ -48,7 +48,9 @@ class _DashBoard extends State<DashBoard> {
       floatingActionButton: DashBoardFAB(repository: insights),
       body: ChangeNotifierProvider<FilterState>(
           create: (_) => FilterState(
-              startTime: new DateTime(2004, 2, 3), endTime: DateTime.now()),
+              startTime: new DateTime(2004, 2, 3),
+              endTime: DateTime.now(),
+              numberOfEvents: 0),
           child: OverviewInsightCard(new InsightsArguments(insights))),
     );
   }
