@@ -31,7 +31,7 @@ class DonutAutoLabelChart extends StatelessWidget {
              
         defaultRenderer: new charts.ArcRendererConfig(
 
-            arcWidth: 90,
+            arcWidth: 80,
             startAngle: -pi/2 + 0.05,
            
             arcRendererDecorators: [new charts.ArcLabelDecorator(
