@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:ofa_v0/views/insights_cards/insight.dart';
@@ -40,23 +42,23 @@ class OverviewInsightCard extends InsightsCard {
   }
 
   bool _filterTime(BuildContext context, Map<String, dynamic> element) {
+    DateTime startTime = Provider.of<FilterState>(context).startTime;
+    DateTime endTime = Provider.of<FilterState>(context).endTime;
+
+    //speed up check with min / max check?
     return List<Map<String, dynamic>>.from(element['events'])
-        .map((event) => DateTime.fromMicrosecondsSinceEpoch(
-            ((element['timestamp'] as int) * 1000)))
-        .any((time) =>
-            Provider.of<FilterState>(context).startTime.isBefore(time) &&
-            Provider.of<FilterState>(context).endTime.isAfter(time));
+        .map((event) => DateTime.fromMillisecondsSinceEpoch(
+            ((event['timestamp'] as int) * 1000)))
+        .any((time) => (startTime.isBefore(time) && endTime.isAfter(time)));
   }
 
   Widget _detailElements(
       List<dynamic> elements, BuildContext context, String type) {
     var tileData = List.from(elements);
-    print(tileData[0]);
     // sort apps by number of events
     tileData.sort((a, b) => (b["count"] as int).compareTo(a["count"] as int));
-    tileData = List.from(
-        elements.where((element) => _filterTime(context, element)).toList());
-    print(tileData);
+    tileData = List<Map<String, dynamic>>.from(
+        tileData.where((element) => _filterTime(context, element)));
 
     //TODO Let the tile take up the whole screen when expanded (user should still be able to scroll to other tiles) and collapse other tiles
     return Theme(
@@ -69,14 +71,14 @@ class OverviewInsightCard extends InsightsCard {
           contentPadding: EdgeInsets.symmetric(horizontal: 4),
           child: ExpansionTile(
             title: Text(
-              "$type that share your information (${elements.length})",
+              "$type that share your information (${tileData.length})",
               style: TextStyle(color: Colors.white),
             ),
             children: <Widget>[
               ListView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
-                itemCount: (elements.length > 2) ? elements.length : 0,
+                itemCount: (tileData.length > 0) ? tileData.length : 0,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: EdgeInsets.symmetric(vertical: 4, horizontal: 4),
@@ -93,7 +95,7 @@ class OverviewInsightCard extends InsightsCard {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  InsightDetail(element: elements[index]),
+                                  InsightDetail(element: tileData[index]),
                             ),
                           );
                         },
@@ -103,11 +105,11 @@ class OverviewInsightCard extends InsightsCard {
                           height: 44,
                         ),
                         title: Text(
-                          elements[index]["name"],
+                          tileData[index]["name"],
                           style: TextStyle(color: Colors.white),
                         ),
                         subtitle: Text(
-                          elements[index]["count"].toString() + ' Events',
+                          tileData[index]["count"].toString() + ' Events',
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
@@ -126,13 +128,23 @@ class OverviewInsightCard extends InsightsCard {
 class FilterState extends ChangeNotifier {
   DateTime startTime = new DateTime(2004);
   DateTime endTime = new DateTime.now();
-  int age;
+  int numberOfEvents;
 
-  FilterState({this.startTime, this.endTime, this.age});
+  FilterState({this.startTime, this.endTime, this.numberOfEvents});
 
   void setTimes(DateTime start, DateTime end) {
     this.startTime = start;
     this.endTime = end;
+    notifyListeners();
+  }
+
+  void setNumberOfEvent(int num) {
+    this.numberOfEvents = num;
+    notifyListeners();
+  }
+
+  void incrementNumberOfEvents() {
+    this.numberOfEvents++;
     notifyListeners();
   }
 }
