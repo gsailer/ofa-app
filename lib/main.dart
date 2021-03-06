@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        buttonColor: Color(0xFFE93A68),
         backgroundColor: Color(0xff212121),
         textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white))
       ),
