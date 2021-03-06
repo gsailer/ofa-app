@@ -6,6 +6,7 @@ import 'package:ofa_v0/repositories.dart';
 import 'package:ofa_v0/views/insights_cards/overview_insights_card.dart';
 import 'package:ofa_v0/views/loadingjson.dart';
 import 'package:ofa_v0/views/widgets/dashboard_fab.dart';
+import 'package:provider/provider.dart';
 
 class DashBoard extends StatefulWidget {
   @override
@@ -45,7 +46,10 @@ class _DashBoard extends State<DashBoard> {
         }),
       ),
       floatingActionButton: DashBoardFAB(repository: insights),
-      body: OverviewInsightCard(new InsightsArguments(insights)),
+      body: ChangeNotifierProvider<FilterState>(
+          create: (_) => FilterState(
+              startTime: new DateTime(2004, 2, 3), endTime: DateTime.now()),
+          child: OverviewInsightCard(new InsightsArguments(insights))),
     );
   }
 

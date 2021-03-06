@@ -26,7 +26,6 @@ class MyApp extends StatelessWidget {
         routes: {
           //TODO: Implement App Loading Screen
           //TODO: Implement Splash Screen
-          //TODO: Onboarding
           '/': (context) => LoadingHome(),
           '/onboarding': (context) => Onboarding(),
           '/dashBoard': (context) => DashBoard(),
@@ -36,7 +35,6 @@ class MyApp extends StatelessWidget {
           '/authors': (context) => Authors(),
           '/delete_confirm': (context) => DeleteConfirm(),
           '/licenses': (context) => OssLicensesPage(),
-          // '/more_websites': (context) => MoreWebsites(),
         });
   }
 }
