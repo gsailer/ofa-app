@@ -12,9 +12,10 @@ class _LoadingHome extends State<LoadingHome> {
     bool loaded = await inRepository.loadFromFS();
 
     if (loaded && inRepository.store.isNotEmpty) {
-      Navigator.pushNamed(context, '/dashBoard', arguments: inRepository);
+      Navigator.pushReplacementNamed(context, '/dashBoard',
+          arguments: inRepository);
     } else {
-      Navigator.pushNamed(context, '/onboarding');
+      Navigator.pushReplacementNamed(context, '/onboarding');
     }
   }
 
