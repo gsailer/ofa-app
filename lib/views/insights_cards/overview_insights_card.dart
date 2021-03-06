@@ -16,28 +16,47 @@ class OverviewInsightCard extends InsightsCard {
   Widget build(BuildContext context) {
     Map<String, dynamic> data =
         this.insightsArguments.insights.getInsight(insightKey);
+    List<dynamic> apps = data["apps"];
+    List<dynamic> websites = data["websites"];
 
-    var dateFilter = Provider.of<FilterState>(context).getTimeFilter;
-    List<dynamic> apps = data["apps"].where(dateFilter);
-    List<dynamic> websites = data["websites"].where(dateFilter);
-
-    return MultiProvider(
-      providers: [ChangeNotifierProvider.value(value: FilterState())],
-      child: ListView(
-        // physics: const AlwaysScrollableScrollPhysics(),
-        // shrinkWrap: true,
-        children: <Widget>[
-          _detailElements(apps, context, "Apps"),
-          _detailElements(websites, context, "Websites"),
-        ],
-      ),
+    return ListView(
+      // physics: const AlwaysScrollableScrollPhysics(),
+      // shrinkWrap: true,
+      children: <Widget>[
+        GestureDetector(
+            onTap: () => _activateFilter(context),
+            child: Center(
+                child: Text(
+                    Provider.of<FilterState>(context).startTime.toString()))),
+        _detailElements(apps, context, "Apps"),
+        _detailElements(websites, context, "Websites"),
+      ],
     );
+  }
+
+  void _activateFilter(BuildContext context) {
+    Provider.of<FilterState>(context, listen: false)
+        .setTimes(new DateTime(2020), new DateTime(2020, 8));
+  }
+
+  bool _filterTime(BuildContext context, Map<String, dynamic> element) {
+    return List<Map<String, dynamic>>.from(element['events'])
+        .map((event) => DateTime.fromMicrosecondsSinceEpoch(
+            ((element['timestamp'] as int) * 1000)))
+        .any((time) =>
+            Provider.of<FilterState>(context).startTime.isBefore(time) &&
+            Provider.of<FilterState>(context).endTime.isAfter(time));
   }
 
   Widget _detailElements(
       List<dynamic> elements, BuildContext context, String type) {
+    var tileData = List.from(elements);
+    print(tileData[0]);
     // sort apps by number of events
-    elements.sort((a, b) => (b["count"] as int).compareTo(a["count"] as int));
+    tileData.sort((a, b) => (b["count"] as int).compareTo(a["count"] as int));
+    tileData = List.from(
+        elements.where((element) => _filterTime(context, element)).toList());
+    print(tileData);
 
     //TODO Let the tile take up the whole screen when expanded (user should still be able to scroll to other tiles) and collapse other tiles
     return Theme(
@@ -105,18 +124,15 @@ class OverviewInsightCard extends InsightsCard {
 }
 
 class FilterState extends ChangeNotifier {
-  DateTime _startTime = new DateTime(2004, 2, 3);
-  DateTime _endTime = DateTime.now();
+  DateTime startTime = new DateTime(2004);
+  DateTime endTime = new DateTime.now();
+  int age;
 
-  DateTimeRange get getTimeFilter =>
-      new DateTimeRange(start: _startTime, end: _endTime);
+  FilterState({this.startTime, this.endTime, this.age});
 
-  void setTimes(DateTime startTime, DateTime endTime) {
-    if (startTime.isBefore(endTime)) {
-      return;
-    }
-    _startTime = startTime;
-    _endTime = endTime;
+  void setTimes(DateTime start, DateTime end) {
+    this.startTime = start;
+    this.endTime = end;
     notifyListeners();
   }
 }

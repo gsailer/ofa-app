@@ -27,11 +27,17 @@ class _LoadingHome extends State<LoadingHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: Text(
-        'loading',
-        style: TextStyle(fontSize: 20),
-      )),
+      body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/images/splash-dark2x.png'),
+                fit: BoxFit.fitHeight),
+          ),
+          child: Center(
+              child: Text(
+            'loading',
+            style: TextStyle(fontSize: 20),
+          ))),
     );
   }
 }
