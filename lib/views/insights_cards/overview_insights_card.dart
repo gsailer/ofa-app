@@ -24,15 +24,47 @@ class OverviewInsightCard extends InsightsCard {
       // physics: const AlwaysScrollableScrollPhysics(),
       // shrinkWrap: true,
       children: <Widget>[
-        GestureDetector(
-            onTap: () => _activateFilter(context),
-            child: Center(
-                child: Text(
-                    '${Provider.of<FilterState>(context).startTime.toString()} - ${Provider.of<FilterState>(context).endTime.toString()}'))),
+        TextButton.icon(
+              icon: Icon(Icons.calendar_today),
+              style: TextButton.styleFrom(
+                backgroundColor: Color(0xFFECB02D),
+                primary: Colors.white,
+              ),
+              onPressed: () => _activateFilter(context),
+              label: Text(" " + _removeTimeFromDate(context, true) + "  -  " + _removeTimeFromDate(context, false)),
+            ),
         _detailElements(apps, context, "Apps"),
         _detailElements(websites, context, "Websites"),
       ],
     );
+  }
+
+  String _removeTimeFromDate(BuildContext context, bool isStartTime) {
+    FilterState dateAndTime = Provider.of<FilterState>(context);
+    var date;
+    List<String> monthsShort = [
+      '',
+      'Jan.',
+      'Feb.',
+      'Mar.',
+      'Apr.',
+      'May',
+      'Jun.',
+      'Jul.',
+      'Aug.',
+      'Sep.',
+      'Oct.',
+      'Nov.',
+      'Dec.'
+    ];
+    if (isStartTime == true) {
+      date =
+          "${monthsShort[dateAndTime.startTime.month]} ${dateAndTime.startTime.day}, ${dateAndTime.startTime.year}";
+    } else {
+      date =
+          "${monthsShort[dateAndTime.endTime.month]} ${dateAndTime.endTime.day}, ${dateAndTime.endTime.year}";
+    }
+    return date.toString();
   }
 
   void _activateFilter(BuildContext context) async {
