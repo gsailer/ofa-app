@@ -9,6 +9,7 @@ import 'package:ofa_v0/views/how_to_del.dart';
 import 'package:ofa_v0/views/authors.dart';
 import 'package:ofa_v0/views/delete_confirm.dart';
 import 'package:ofa_v0/views/insights_screens/insight_detail.dart';
+import 'package:ofa_v0/views/privacy_edu.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(
+            buttonColor: Color(0xFFE93A68),
             backgroundColor: Color(0xff212121),
             textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white))),
         title: 'OFA Prototype',
@@ -35,6 +37,7 @@ class MyApp extends StatelessWidget {
           '/authors': (context) => Authors(),
           '/delete_confirm': (context) => DeleteConfirm(),
           '/licenses': (context) => OssLicensesPage(),
+          '/privacy_edu': (context) => PrivacyEdu(),
         });
   }
 }
