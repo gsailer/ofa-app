@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ofa_v0/repositories.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class LoadingHome extends StatefulWidget {
   @override
@@ -8,14 +9,18 @@ class LoadingHome extends StatefulWidget {
 
 class _LoadingHome extends State<LoadingHome> {
   void sendToOnboardingOrDashboard() async {
-    INRepository inRepository = new INRepository();
-    bool loaded = await inRepository.loadFromFS();
-
-    if (loaded && inRepository.store.isNotEmpty) {
-      Navigator.pushReplacementNamed(context, '/dashBoard',
-          arguments: inRepository);
-    } else {
+    if (kIsWeb) {
       Navigator.pushReplacementNamed(context, '/onboarding');
+    } else {
+      INRepository inRepository = new INRepository();
+      bool loaded = await inRepository.loadFromFS();
+
+      if (loaded && inRepository.store.isNotEmpty) {
+        Navigator.pushReplacementNamed(context, '/dashBoard',
+            arguments: inRepository);
+      } else {
+        Navigator.pushReplacementNamed(context, '/onboarding');
+      }
     }
   }
 
@@ -29,16 +34,12 @@ class _LoadingHome extends State<LoadingHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-                image: AssetImage('assets/images/splash-dark2x.png'),
-                fit: BoxFit.fitHeight),
-          ),
-          child: Center(
-              child: Text(
-            'loading',
-            style: TextStyle(fontSize: 20),
-          ))),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/images/splash-dark2x.png'),
+              fit: BoxFit.fitHeight),
+        ),
+      ),
     );
   }
 }
