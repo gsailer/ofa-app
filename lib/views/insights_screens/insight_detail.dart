@@ -4,6 +4,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:ofa_v0/views/widgets/events_pie_chart.dart';
+import 'package:ofa_v0/views/widgets/horizontal_bar_chart.dart';
 
 class InsightDetail extends StatefulWidget {
   final Map<String, dynamic> element;
@@ -34,13 +35,15 @@ class _InsightDetailState extends State<InsightDetail> {
                 eventType,
                 widget.element["events_by_type"][eventType].length,
                 Colors.purple))
-            .toList();
+            .toList()
+            ..sort((e1,e2) => e2.count.compareTo(e1.count));
 
     for (var i = 0; i < pieData.length; i++) {
       pieData[i].color = eventColor[i];
     }
     _seriesPieData.add(
       charts.Series(
+
           labelAccessorFn: (EventRatio eventRatio, _) =>
               '${eventRatio.event}: ${eventRatio.count}',
           data: pieData,
@@ -76,6 +79,7 @@ class _InsightDetailState extends State<InsightDetail> {
       body: Container(
         decoration: BoxDecoration(
           color: Color(0xFF212121),
+          // border: Border.all(color: Colors.white)
         ),
         height: MediaQuery.of(context).size.height -
             MediaQuery.of(context).padding.top -
@@ -83,7 +87,7 @@ class _InsightDetailState extends State<InsightDetail> {
         child: ListView(children: <Widget>[
           Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: 25,
+              horizontal: 15,
             ),
             child: Container(
               //TODO: auto adjust height depending on phone size (prevent overflow error on small/big devices"
@@ -162,11 +166,38 @@ class _InsightDetailState extends State<InsightDetail> {
               ),
             ),
           ),
-          Container(
-            child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.8,
-                height: MediaQuery.of(context).size.width * 0.8,
-                child: DonutAutoLabelChart(_seriesPieData)),
+          Center(
+            child: Container(
+              width: MediaQuery.of(context).size.width * 1,
+              height: MediaQuery.of(context).size.width * 0.5,
+              // decoration: BoxDecoration(
+              //   border: Border.all(color: Colors.white)
+              // ),
+              child: Center(
+                child: SizedBox(child: 
+                // DonutAutoLabelChart(_seriesPieData)
+                HorizontalBarLabelChart(_seriesPieData)
+                ),
+              ),
+            ),
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 40),
+              child: TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: Theme.of(context).buttonColor,
+                    primary: Colors.white,
+                  ),
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/privacy_edu');
+                  },
+                  child: Text(
+                    "How to prevend Facebook from gathering your data?",
+                    // style: TextStyle(fontSize: 18),
+                  )),
+            ),
           ),
         ]),
       ),
@@ -174,7 +205,7 @@ class _InsightDetailState extends State<InsightDetail> {
   }
 
   void _eventExplain() {
-    List<Map<String, dynamic>> events;
+    List<dynamic> events;
     widget.element.forEach((key, value) {
       if (key == "events") {
         events = value;
@@ -315,9 +346,7 @@ class _InsightDetailState extends State<InsightDetail> {
                         // shape: BoxShape.rectangle,
                         color: Theme.of(context).backgroundColor,
                         borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.white)
-
-                        ),
+                        border: Border.all(color: Colors.white)),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
