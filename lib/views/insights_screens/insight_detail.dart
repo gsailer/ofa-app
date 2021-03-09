@@ -194,7 +194,7 @@ class _InsightDetailState extends State<InsightDetail> {
                     Navigator.pushNamed(context, '/privacy_edu');
                   },
                   child: Text(
-                    "How to prevend Facebook from gathering your data?",
+                    "How to prevent Facebook from gathering your data?",
                     // style: TextStyle(fontSize: 18),
                   )),
             ),
