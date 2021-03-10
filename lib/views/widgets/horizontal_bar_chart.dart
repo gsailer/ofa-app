@@ -8,8 +8,6 @@ class HorizontalBarLabelChart extends StatelessWidget {
 
   HorizontalBarLabelChart(this.seriesList, {this.animate});
 
-
-
   // [BarLabelDecorator] will automatically position the label
   // inside the bar if the label will fit. If the label will not fit and the
   // area outside of the bar is larger than the bar, it will draw outside of the
@@ -28,7 +26,9 @@ class HorizontalBarLabelChart extends StatelessWidget {
       //       barRendererDecorator: new charts.BarLabelDecorator(
       //          insideLabelStyleSpec: new charts.TextStyleSpec(...),
       //          outsideLabelStyleSpec: new charts.TextStyleSpec(...)),
-      barRendererDecorator: new charts.BarLabelDecorator<String>(),
+      barRendererDecorator: new charts.BarLabelDecorator<String>(
+          outsideLabelStyleSpec: new charts.TextStyleSpec(
+              fontSize: 12, color: charts.Color.white)),
       // Hide domain axis.
       domainAxis:
           new charts.OrdinalAxisSpec(renderSpec: new charts.NoneRenderSpec()),
