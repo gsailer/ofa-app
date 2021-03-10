@@ -33,7 +33,10 @@ class PrivacyEdu extends StatelessWidget {
           child: ListView(
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.only(left: 6, top: 10),
+                padding: EdgeInsets.only(
+                    left: 6,
+                    top: 20,
+                    bottom: MediaQuery.of(context).size.height * 0.05),
                 child: Text(
                   "Privacy precautions",
                   style: TextStyle(
