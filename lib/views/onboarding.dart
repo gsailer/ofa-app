@@ -226,8 +226,8 @@ class _OnboardingState extends State<Onboarding> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
-                              height: 600,
-                              width: 300,
+                              height: MediaQuery.of(context).size.height * 0.6,
+                              width: MediaQuery.of(context).size.width * 0.9,
                               decoration: BoxDecoration(
                                   color: Color(0x1EE93A68),
                                   border: Border.all(
@@ -282,77 +282,82 @@ class _OnboardingState extends State<Onboarding> {
               ),
             if (_currentPage == 2)
               Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [_button(_currentPage)],
-                    ),
-                       
-            Container(
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: RichText(
-                  textAlign: TextAlign.left,
-                  text: TextSpan(
-                      text: 'Delete Data steps:\n\n',
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Color(0xFFECB02D),
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                          color: Theme.of(context).backgroundColor),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: RichText(
+                          textAlign: TextAlign.left,
+                          text: TextSpan(
+                              text: 'Delete Data steps:\n\n',
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Color(0xFFECB02D),
+                              ),
+                              children: <TextSpan>[
+                                TextSpan(text: '1. '),
+                                TextSpan(
+                                    text: 'Open ',
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white)),
+                                TextSpan(
+                                    text: 'Account ',
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white)),
+                                TextSpan(
+                                    text: 'tab\n\n',
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white)),
+                                TextSpan(text: '2. '),
+                                TextSpan(
+                                    text: 'Click on ',
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white)),
+                                TextSpan(
+                                    text: 'Settings & privacy\n\n',
+                                    style: TextStyle(fontSize: 15)),
+                                TextSpan(text: '3. '),
+                                TextSpan(
+                                    text: 'Open ',
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white)),
+                                TextSpan(
+                                    text:
+                                        'View or clear your off-Facebook activity\n\n',
+                                    style: TextStyle(fontSize: 15)),
+                                TextSpan(text: '4. '),
+                                TextSpan(
+                                    text: 'Click on ',
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white)),
+                                TextSpan(
+                                    text: 'Clear History\n\n',
+                                    style: TextStyle(fontSize: 15)),
+                                TextSpan(text: '5. '),
+                                TextSpan(
+                                    text: 'Confirm with ',
+                                    style: TextStyle(
+                                        fontSize: 15, color: Colors.white)),
+                                TextSpan(
+                                    text: 'Clear History',
+                                    style: TextStyle(fontSize: 15)),
+                              ]),
+                        ),
                       ),
-                      children: <TextSpan>[
-                        TextSpan(text: '1. '),
-                        TextSpan(
-                            text: 'Open ',
-                            style:
-                                TextStyle(fontSize: 15, color: Colors.white)),
-                        TextSpan(
-                            text: 'Account ',
-                            style:
-                                TextStyle(fontSize: 15, color: Colors.white)),
-                        TextSpan(
-                            text: 'tab\n\n',
-                            style:
-                                TextStyle(fontSize: 15, color: Colors.white)),
-                        TextSpan(text: '2. '),
-                        TextSpan(
-                            text: 'Click on ',
-                            style:
-                                TextStyle(fontSize: 15, color: Colors.white)),
-                        TextSpan(
-                            text: 'Settings & privacy\n\n',
-                            style: TextStyle(fontSize: 15)),
-                        TextSpan(text: '3. '),
-                        TextSpan(
-                            text: 'Open ',
-                            style:
-                                TextStyle(fontSize: 15, color: Colors.white)),
-                        TextSpan(
-                            text:
-                                'View or clear your off-Facebook activity\n\n',
-                            style: TextStyle(fontSize: 15)),
-                        TextSpan(text: '4. '),
-                        TextSpan(
-                            text: 'Click on ',
-                            style:
-                                TextStyle(fontSize: 15, color: Colors.white)),
-                        TextSpan(
-                            text: 'Clear History\n\n',
-                            style: TextStyle(fontSize: 15)),
-                        TextSpan(text: '5. '),
-                        TextSpan(
-                            text: 'Confirm with ',
-                            style:
-                                TextStyle(fontSize: 15, color: Colors.white)),
-                        TextSpan(
-                            text: 'Clear History',
-                            style: TextStyle(fontSize: 15)),
-                      ]),
-                ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-                  ],
-                ),
-           
+            if (_currentPage == 2)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [_button(_currentPage)],
+              ),
 
             // if (_currentPage == 0)
             //   Row(

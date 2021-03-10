@@ -39,7 +39,7 @@ class _AuthorsState extends State<Authors> {
           children: [
             ListTile(
               title: Text(
-                "Authors:",
+                "Authors",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -61,10 +61,10 @@ class _AuthorsState extends State<Authors> {
                   ),
                   Expanded(
                     child: Text(
-                        "Dominik Prediger\nDeveloper",
-                        style: TextStyle(color: Colors.white),
-                      ),
+                      "Dominik Prediger\nDeveloper",
+                      style: TextStyle(color: Colors.white),
                     ),
+                  ),
                   InkWell(
                     child: Text("Github",
                         style: TextStyle(

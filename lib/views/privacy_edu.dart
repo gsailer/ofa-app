@@ -35,7 +35,7 @@ class PrivacyEdu extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(left: 6, top: 10),
                 child: Text(
-                  "Privacy precautions:",
+                  "Privacy precautions",
                   style: TextStyle(
                     //TODO: change font to Russo One
                     fontSize: 30,
@@ -66,13 +66,14 @@ class PrivacyEdu extends StatelessWidget {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 15.0),
                             child: RichText(
                               textAlign: TextAlign.left,
                               text: TextSpan(
                                   text: 'Open up your Facebook app.\n',
-                                  style:
-                                      TextStyle(fontSize: 15, color: Colors.white),
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white),
                                   children: <TextSpan>[
                                     TextSpan(
                                         text:
@@ -82,7 +83,8 @@ class PrivacyEdu extends StatelessWidget {
                                           '2. Search for "Off-Facebook Activity"\n',
                                     ),
                                     TextSpan(
-                                      text: '3. Click on Off-Facebook Activity\n',
+                                      text:
+                                          '3. Click on Off-Facebook Activity\n',
                                     ),
                                     TextSpan(
                                       text: '4. Click on Clear History\n',
@@ -102,32 +104,34 @@ class PrivacyEdu extends StatelessWidget {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 15.0),
                             child: RichText(
-                          textAlign: TextAlign.left,
-                          text: TextSpan(
-                              text: 'Head over to the Facebook home page.\n',
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.white),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text:
-                                        '1. Click on the drop down arrow in the top right corner.\n'),
-                                TextSpan(
-                                  text: '2. Click on Settings & Privacy.\n',
-                                ),
-                                TextSpan(
-                                  text: '3. Click on Privacy Shortcuts\n',
-                                ),
-                                TextSpan(
+                              textAlign: TextAlign.left,
+                              text: TextSpan(
                                   text:
-                                      '4. View or clear your off-Facebook activity.\n',
-                                ),
-                                TextSpan(
-                                  text: '5. Clear History"\n',
-                                ),
-                              ]),
-                        ),
+                                      'Head over to the Facebook home page.\n',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                        text:
+                                            '1. Click on the drop down arrow in the top right corner.\n'),
+                                    TextSpan(
+                                      text: '2. Click on Settings & Privacy.\n',
+                                    ),
+                                    TextSpan(
+                                      text: '3. Click on Privacy Shortcuts\n',
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          '4. View or clear your off-Facebook activity.\n',
+                                    ),
+                                    TextSpan(
+                                      text: '5. Clear History"\n',
+                                    ),
+                                  ]),
+                            ),
                           ),
                         ),
                       ],
@@ -183,29 +187,31 @@ class PrivacyEdu extends StatelessWidget {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 15.0),
                             child: RichText(
-                          textAlign: TextAlign.left,
-                          text: TextSpan(
-                              text: 'Open up your Facebook app.\n',
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.white),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text:
-                                        '1. Click on the search button in the top right corner.\n'),
-                                TextSpan(
-                                  text: '2. Search for "Apps and Websites"\n',
-                                ),
-                                TextSpan(
-                                  text: '3. Click on Apps and Websites\n',
-                                ),
-                                TextSpan(
-                                  text:
-                                      '4. "Logged in with Facebook" shows you apps and websites you\'ve used Facebook to log into. There you can remove them from your account.\n',
-                                ),
-                              ]),
-                        ),
+                              textAlign: TextAlign.left,
+                              text: TextSpan(
+                                  text: 'Open up your Facebook app.\n',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                        text:
+                                            '1. Click on the search button in the top right corner.\n'),
+                                    TextSpan(
+                                      text:
+                                          '2. Search for "Apps and Websites"\n',
+                                    ),
+                                    TextSpan(
+                                      text: '3. Click on Apps and Websites\n',
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          '4. "Logged in with Facebook" shows you apps and websites you\'ve used Facebook to log into. There you can remove them from your account.\n',
+                                    ),
+                                  ]),
+                            ),
                           ),
                         ),
                       ],
@@ -219,29 +225,32 @@ class PrivacyEdu extends StatelessWidget {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 15.0),
                             child: RichText(
-                          textAlign: TextAlign.left,
-                          text: TextSpan(
-                              text: 'Head over to the Facebook home page.\n',
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.white),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text:
-                                        '1. Click on the search button in the top left corner.\n'),
-                                TextSpan(
-                                  text: '2. Search for "Apps and Websites"\n',
-                                ),
-                                TextSpan(
-                                  text: '3. Click on Apps and Websites\n',
-                                ),
-                                TextSpan(
+                              textAlign: TextAlign.left,
+                              text: TextSpan(
                                   text:
-                                      '4. This page shows you apps and websites you\'ve used Facebook to log into. There you can remove them from your account.\n',
-                                ),
-                              ]),
-                        ),
+                                      'Head over to the Facebook home page.\n',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                        text:
+                                            '1. Click on the search button in the top left corner.\n'),
+                                    TextSpan(
+                                      text:
+                                          '2. Search for "Apps and Websites"\n',
+                                    ),
+                                    TextSpan(
+                                      text: '3. Click on Apps and Websites\n',
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          '4. This page shows you apps and websites you\'ve used Facebook to log into. There you can remove them from your account.\n',
+                                    ),
+                                  ]),
+                            ),
                           ),
                         ),
                       ],
@@ -273,33 +282,34 @@ class PrivacyEdu extends StatelessWidget {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 15.0),
                             child: RichText(
-                          textAlign: TextAlign.left,
-                          text: TextSpan(
-                              text: 'Open up your Facebook app.\n',
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.white),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text:
-                                        '1. Click on the search button in the top right corner.\n'),
-                                TextSpan(
-                                  text: '2. Search for "Location"\n',
-                                ),
-                                TextSpan(
-                                  text: '3. Click on Location Settings\n',
-                                ),
-                                TextSpan(
-                                  text:
-                                      '4. Set "Turn on Location History for your mobile devices?" to "Off" if it isn\'t already\n',
-                                ),
-                                TextSpan(
-                                  text:
-                                      '5. You can also delete your location history under Location History while you\'re at it\n',
-                                ),
-                              ]),
-                        ),
+                              textAlign: TextAlign.left,
+                              text: TextSpan(
+                                  text: 'Open up your Facebook app.\n',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                        text:
+                                            '1. Click on the search button in the top right corner.\n'),
+                                    TextSpan(
+                                      text: '2. Search for "Location"\n',
+                                    ),
+                                    TextSpan(
+                                      text: '3. Click on Location Settings\n',
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          '4. Set "Turn on Location History for your mobile devices?" to "Off" if it isn\'t already\n',
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          '5. You can also delete your location history under Location History while you\'re at it\n',
+                                    ),
+                                  ]),
+                            ),
                           ),
                         ),
                       ],
@@ -313,36 +323,38 @@ class PrivacyEdu extends StatelessWidget {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 15.0),
                             child: RichText(
-                          textAlign: TextAlign.left,
-                          text: TextSpan(
-                              text: 'Head over to the Facebook home page.\n',
-                              style:
-                                  TextStyle(fontSize: 15, color: Colors.white),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text:
-                                        '1. Click on the search button in the top left corner.\n'),
-                                TextSpan(
-                                  text: '2. Search for "Location"\n',
-                                ),
-                                TextSpan(
-                                  text: '3. Click on Location Settings\n',
-                                ),
-                                TextSpan(
-                                  text: '4. Click on Location Access\n',
-                                ),
-                                TextSpan(
+                              textAlign: TextAlign.left,
+                              text: TextSpan(
                                   text:
-                                      '5. Set "Turn on Location History for your mobile devices?" to "Off" if it isn\'t already\n',
-                                ),
-                                TextSpan(
-                                  text:
-                                      '6. You can also delete your location history under Location History while you\'re at it\n',
-                                ),
-                              ]),
-                        ),
+                                      'Head over to the Facebook home page.\n',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white),
+                                  children: <TextSpan>[
+                                    TextSpan(
+                                        text:
+                                            '1. Click on the search button in the top left corner.\n'),
+                                    TextSpan(
+                                      text: '2. Search for "Location"\n',
+                                    ),
+                                    TextSpan(
+                                      text: '3. Click on Location Settings\n',
+                                    ),
+                                    TextSpan(
+                                      text: '4. Click on Location Access\n',
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          '5. Set "Turn on Location History for your mobile devices?" to "Off" if it isn\'t already\n',
+                                    ),
+                                    TextSpan(
+                                      text:
+                                          '6. You can also delete your location history under Location History while you\'re at it\n',
+                                    ),
+                                  ]),
+                            ),
                           ),
                         ),
                       ],
@@ -367,8 +379,8 @@ class PrivacyEdu extends StatelessWidget {
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child:Text(
-                        "This is a tricky one and might require some computer knowledge, but it's totally worth it. You can install extentions for your browser or apps for your android smartphone that keep Facebook from tracking your data."),
+                      child: Text(
+                          "This is a tricky one and might require some computer knowledge, but it's totally worth it. You can install extentions for your browser or apps for your android smartphone that keep Facebook from tracking your data."),
                     ),
                     ExpansionTile(
                       title: Text(
@@ -379,29 +391,31 @@ class PrivacyEdu extends StatelessWidget {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                            child:RichText(
-                          textAlign: TextAlign.left,
-                          text: TextSpan(
-                              text:
-                                  'There is no universal tutorial to block Facebooks tracking on your smartphone. Especially on an iPhone. If you are still interested in blocking Facebook tracking on your android device I would recommend you have a look at Blockada.',
-                              style: TextStyle(fontSize: 15, color: Colors.white),
-                              children: <TextSpan>[
-                                TextSpan(text: '1. '),
-                                TextSpan(
-                                    text: 'Open ',
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.white)),
-                                TextSpan(
-                                    text: 'Account ',
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.white)),
-                                TextSpan(
-                                    text: 'tab\n\n',
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.white)),
-                              ]),
-                        ),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 15.0),
+                            child: RichText(
+                              textAlign: TextAlign.left,
+                              text: TextSpan(
+                                  text:
+                                      'There is no universal tutorial to block Facebooks tracking on your smartphone. Especially on an iPhone. If you are still interested in blocking Facebook tracking on your android device I would recommend you have a look at Blockada.',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white),
+                                  children: <TextSpan>[
+                                    TextSpan(text: '1. '),
+                                    TextSpan(
+                                        text: 'Open ',
+                                        style: TextStyle(
+                                            fontSize: 15, color: Colors.white)),
+                                    TextSpan(
+                                        text: 'Account ',
+                                        style: TextStyle(
+                                            fontSize: 15, color: Colors.white)),
+                                    TextSpan(
+                                        text: 'tab\n\n',
+                                        style: TextStyle(
+                                            fontSize: 15, color: Colors.white)),
+                                  ]),
+                            ),
                           ),
                         ),
                       ],
@@ -415,30 +429,31 @@ class PrivacyEdu extends StatelessWidget {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                            child:RichText(
-                          textAlign: TextAlign.left,
-                          text: TextSpan(
-                              text:
-                                  'Simple, head over to your Facebook app or visit the website.',
-                              style: TextStyle(fontSize: 15, color: Colors.white),
-                              
-                              children: <TextSpan>[
-                                TextSpan(text: '1. '),
-                                TextSpan(
-                                    text: 'Open ',
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.white)),
-                                TextSpan(
-                                    text: 'Account ',
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.white)),
-                                TextSpan(
-                                    text: 'tab\n\n',
-                                    style: TextStyle(
-                                        fontSize: 15, color: Colors.white)),
-                              ]),
-                        ),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 15.0),
+                            child: RichText(
+                              textAlign: TextAlign.left,
+                              text: TextSpan(
+                                  text:
+                                      'Simple, head over to your Facebook app or visit the website.',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white),
+                                  children: <TextSpan>[
+                                    TextSpan(text: '1. '),
+                                    TextSpan(
+                                        text: 'Open ',
+                                        style: TextStyle(
+                                            fontSize: 15, color: Colors.white)),
+                                    TextSpan(
+                                        text: 'Account ',
+                                        style: TextStyle(
+                                            fontSize: 15, color: Colors.white)),
+                                    TextSpan(
+                                        text: 'tab\n\n',
+                                        style: TextStyle(
+                                            fontSize: 15, color: Colors.white)),
+                                  ]),
+                            ),
                           ),
                         ),
                       ],

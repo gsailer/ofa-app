@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import 'package:ofa_v0/views/licenses.dart';
 import 'package:ofa_v0/views/loading_home.dart';
 import 'package:ofa_v0/views/nojson.dart';
@@ -22,7 +24,8 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             buttonColor: Color(0xFFE93A68),
             backgroundColor: Color(0xff212121),
-            textTheme: TextTheme(bodyText2: TextStyle(color: Colors.white))),
+            textTheme: GoogleFonts.russoOneTextTheme(
+                TextTheme(bodyText2: TextStyle(color: Colors.white)))),
         title: 'OFA Prototype',
         initialRoute: '/',
         routes: {

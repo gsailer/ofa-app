@@ -42,7 +42,7 @@ class _HowToDelState extends State<HowToDel> {
                     padding: const EdgeInsets.all(8.0),
                     child: Align(
                       child: Text(
-                        "How to delete your data from Facebook:",
+                        "How to delete your data from Facebook",
                         style: TextStyle(
                           //TODO: change font to Russo One
                           fontSize: 30,
@@ -58,37 +58,65 @@ class _HowToDelState extends State<HowToDel> {
                       'assets/images/json_tutorial.gif',
                     )),
                   ),
-
                   Container(
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: RichText(
                         textAlign: TextAlign.left,
                         text: TextSpan(
-                          text: 'Delete Data steps:\n\n',
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Color(0xFFECB02D),
-                         ),
-                         children: <TextSpan>[
-                           TextSpan(text: '1. '),
-                           TextSpan(text: 'Open ', style: TextStyle(fontSize: 15, color: Colors.white)),
-                           TextSpan(text: 'Account ', style: TextStyle(fontSize: 15, color: Colors.white)),
-                           TextSpan(text: 'tab\n\n', style: TextStyle(fontSize: 15, color: Colors.white)),
-                           TextSpan(text: '2. '),
-                           TextSpan(text: 'Click on ', style: TextStyle(fontSize: 15, color: Colors.white)),
-                           TextSpan(text: 'Settings & privacy\n\n', style: TextStyle(fontSize: 15)),
-                           TextSpan(text: '3. '),
-                           TextSpan(text: 'Open ', style: TextStyle(fontSize: 15, color: Colors.white)),
-                           TextSpan(text: 'View or clear your off-Facebook activity\n\n', style: TextStyle(fontSize: 15)),
-                           TextSpan(text: '4. '),
-                           TextSpan(text: 'Click on ', style: TextStyle(fontSize: 15, color: Colors.white)),
-                           TextSpan(text: 'Clear History\n\n', style: TextStyle(fontSize: 15)),
-                           TextSpan(text: '5. '),
-                           TextSpan(text: 'Confirm with ', style: TextStyle(fontSize: 15, color: Colors.white)),
-                           TextSpan(text: 'Clear History', style: TextStyle(fontSize: 15)),
-                         ]
-                        ),
+                            text: 'Delete Data steps:\n\n',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Color(0xFFECB02D),
+                            ),
+                            children: <TextSpan>[
+                              TextSpan(text: '1. '),
+                              TextSpan(
+                                  text: 'Open ',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white)),
+                              TextSpan(
+                                  text: 'Account ',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white)),
+                              TextSpan(
+                                  text: 'tab\n\n',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white)),
+                              TextSpan(text: '2. '),
+                              TextSpan(
+                                  text: 'Click on ',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white)),
+                              TextSpan(
+                                  text: 'Settings & privacy\n\n',
+                                  style: TextStyle(fontSize: 15)),
+                              TextSpan(text: '3. '),
+                              TextSpan(
+                                  text: 'Open ',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white)),
+                              TextSpan(
+                                  text:
+                                      'View or clear your off-Facebook activity\n\n',
+                                  style: TextStyle(fontSize: 15)),
+                              TextSpan(text: '4. '),
+                              TextSpan(
+                                  text: 'Click on ',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white)),
+                              TextSpan(
+                                  text: 'Clear History\n\n',
+                                  style: TextStyle(fontSize: 15)),
+                              TextSpan(text: '5. '),
+                              TextSpan(
+                                  text: 'Confirm with ',
+                                  style: TextStyle(
+                                      fontSize: 15, color: Colors.white)),
+                              TextSpan(
+                                  text: 'Clear History',
+                                  style: TextStyle(fontSize: 15)),
+                            ]),
                       ),
                     ),
                   ),
