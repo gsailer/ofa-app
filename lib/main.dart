@@ -12,6 +12,7 @@ import 'package:ofa_v0/views/authors.dart';
 import 'package:ofa_v0/views/delete_confirm.dart';
 import 'package:ofa_v0/views/insights_screens/insight_detail.dart';
 import 'package:ofa_v0/views/privacy_edu.dart';
+import 'package:ofa_v0/views/export_data.dart';
 
 void main() {
   runApp(MyApp());
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
           '/delete_confirm': (context) => DeleteConfirm(),
           '/licenses': (context) => OssLicensesPage(),
           '/privacy_edu': (context) => PrivacyEdu(),
+          '/export_data': (context) => ExportData(),
         });
   }
 }
