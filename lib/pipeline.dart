@@ -1,3 +1,4 @@
+import 'package:ofa_v0/insights/data_exporter.dart';
 import 'package:ofa_v0/insights/overview_insight.dart';
 import 'package:ofa_v0/insights/insight.dart';
 import 'package:ofa_v0/repositories.dart';
@@ -18,10 +19,11 @@ class Pipeline {
 
     // insights
     OverviewInsight overviewInsight = new OverviewInsight();
+    DataExporter dataExporter = new DataExporter();
 
     // register new transformations and insights here
     this.transformations = [appExtractor];
-    this.insights = [overviewInsight];
+    this.insights = [overviewInsight, dataExporter];
   }
 
   trigger() {
