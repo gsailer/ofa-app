@@ -13,6 +13,7 @@ class _ExportDataState extends State<ExportData> {
 
   @override
   Widget build(BuildContext context) {
+    INRepository insights = ModalRoute.of(context).settings.arguments;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff212121),
@@ -63,9 +64,8 @@ class _ExportDataState extends State<ExportData> {
                     primary: Colors.white,
                   ),
                   onPressed: () {
-                    INRepository insights = new INRepository();
-                    DataExporter de = new DataExporter();
-                    print(insights.getInsight(de.insightKey));
+                    //TODO: send data export to SECUSO server
+                    print(insights.getInsight("data-export"));
                   },
                   child: Text(
                     "Upload your anonymous data",
