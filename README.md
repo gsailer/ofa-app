@@ -5,9 +5,6 @@ Since most Facebook users do not know that they are tracked outside of Facebook,
 This app visualises Off-Facebook activity data resulting from data exports [Off-Facebook Activity](https://www.facebook.com/help/2207256696182627).
 This app is supposed to be used in the context of research of the KIT.
 
-:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-![](docs/images/get-started.png)  |  ![](docs/images/get-insights.png)  |  ![](docs/images/download-data.png)  |  ![](docs/images/dashboard.png)  |  ![](docs/images/details.png)
-
 
 ## Getting Started
 
