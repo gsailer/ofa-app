@@ -37,6 +37,9 @@ dependencies:
   date_range_picker:
     git:
       url: https://github.com/LempereurBenjamin/date_range_picker
+  package_info: ^2.0.0
+  mdi: ^3.0.0
+
 
 
   # The following adds the Cupertino Icons font to your application.

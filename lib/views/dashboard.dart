@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mdi/mdi.dart';
 import 'package:ofa_v0/json_parser.dart';
 // import 'package:ofa_v0/views/more_websites.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -121,7 +122,7 @@ class _DashBoard extends State<DashBoard> {
                         width: 11,
                       ),
                       Text(
-                        'How to delete your data from Facebook?',
+                        'How to delete your data?',
                         style: TextStyle(color: Colors.white),
                       ),
                     ],
@@ -220,7 +221,10 @@ class _DashBoard extends State<DashBoard> {
                 ListTile(
                   title: Row(
                     children: <Widget>[
-                      Icon(Icons.import_export, color: Colors.white,),
+                      Icon(
+                        Icons.import_export,
+                        color: Colors.white,
+                      ),
                       SizedBox(
                         width: 11,
                       ),
@@ -231,8 +235,33 @@ class _DashBoard extends State<DashBoard> {
                     ],
                   ),
                   onTap: () {
-                    INRepository insights = ModalRoute.of(context).settings.arguments;
-                    Navigator.pushNamed(context, '/export_data', arguments: insights);
+                    INRepository insights =
+                        ModalRoute.of(context).settings.arguments;
+                    Navigator.pushNamed(context, '/export_data',
+                        arguments: insights);
+                  },
+                ),
+                Divider(
+                  color: Colors.white,
+                  thickness: 2,
+                  indent: 10,
+                  endIndent: 10,
+                ),
+                ListTile(
+                  title: Row(
+                    children: <Widget>[
+                      Icon(Mdi.information, color: Colors.white),
+                      SizedBox(
+                        width: 11,
+                      ),
+                      Text(
+                        'About',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/about');
                   },
                 ),
               ],
