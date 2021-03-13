@@ -68,7 +68,7 @@ class _OnboardingState extends State<Onboarding> {
           decoration: BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('assets/images/ofa-back-dark.png'),
-                fit: BoxFit.fitHeight),
+                fit: BoxFit.cover),
           ),
           child: ListView(children: <Widget>[
             Padding(
