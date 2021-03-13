@@ -211,6 +211,30 @@ class _DashBoard extends State<DashBoard> {
                     Navigator.pushNamed(context, '/licenses');
                   },
                 ),
+                Divider(
+                  color: Colors.white,
+                  thickness: 2,
+                  indent: 10,
+                  endIndent: 10,
+                ),
+                ListTile(
+                  title: Row(
+                    children: <Widget>[
+                      Icon(Icons.import_export, color: Colors.white,),
+                      SizedBox(
+                        width: 11,
+                      ),
+                      Text(
+                        'Export data',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  onTap: () {
+                    INRepository insights = ModalRoute.of(context).settings.arguments;
+                    Navigator.pushNamed(context, '/export_data', arguments: insights);
+                  },
+                ),
               ],
             ),
           ),
